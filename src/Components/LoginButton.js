@@ -6,8 +6,10 @@ function LoginButton() {
 	const [username, setUsername] = useState();
   const [token, setToken] = useState();
 
+  const user = new User();
+
   return (
-    <Button onClick={User.Login}>Login</Button>
+    <Button onClick={user.Login}>Login</Button>
   );
 }
 

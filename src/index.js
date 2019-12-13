@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
+/*
 import AppContainer from './containers/AppContainer';
 import {createStore} from 'redux';
 import Reducer from './reducers/index.js'
@@ -13,6 +14,8 @@ import { Provider } from 'react-redux';
 
 //reducer
 const store = createStore(Reducer)
+
+*/
 
 //BootStrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -31,12 +34,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 
-
 ReactDOM.render(
+/*
     <Provider store={store}>
       <AppContainer />
     </Provider>
-    , document.getElementById('root')
+*/
+    <App />
+, document.getElementById('root')
 );
 
 serviceWorker.unregister();
