@@ -5983,11 +5983,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-<<<<<<< HEAD
-hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
-=======
 hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.2.1, hoist-non-react-statics@^3.3.0:
->>>>>>> 5b3548a401be142f75572f8f2301258bc74c0adf
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#101685d3aff3b23ea213163f6e8e12f4f111e19f"
   integrity sha512-wbg3bpgA/ZqWrZuMOeJi8+SKMhr7X9TesL/rXMjTzh0p0JUBo3II8DHboYbuIXWRlttrUFxwcu/5kygrCw8fJw==
@@ -10311,9 +10307,6 @@ react-error-overlay@^6.0.3:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
   integrity sha512-bOUvMWFQVk5oz8Ded9Xb7WVdEi3QGLC8tH7HmYP0Fdp4Bn3qw0tRFmr5TW6mvahzvmrK4a6bqWGfCevBflP+Xw==
 
-<<<<<<< HEAD
-react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.9.0:
-=======
 react-icons-kit@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-icons-kit/-/react-icons-kit-1.3.1.tgz#fbe56ce4379fc4391b4c6dfc1aa96e2b31e23623"
@@ -10323,7 +10316,6 @@ react-icons-kit@^1.3.1:
     prop-types "^15.5.8"
 
 react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.9.0:
->>>>>>> 5b3548a401be142f75572f8f2301258bc74c0adf
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
@@ -10577,9 +10569,6 @@ redeyed@~2.1.0:
   dependencies:
     esprima "~4.0.0"
 
-<<<<<<< HEAD
-redux@^4.0.4:
-=======
 redux-devtools-extension@^2.13.8:
   version "2.13.8"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
@@ -10599,7 +10588,6 @@ redux-thunk@^2.3.0:
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
 redux@^4.0.0, redux@^4.0.4:
->>>>>>> 5b3548a401be142f75572f8f2301258bc74c0adf
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.4.tgz#4ee1aeb164b63d6a1bcc57ae4aa0b6e6fa7a3796"
   integrity sha512-vKv4WdiJxOWKxK0yRoaK3Y4pxxB0ilzVx6dszU2W8wLxlb2yikRph4iV/ymtdJ6ZxpBLFbyrxklnT5yBbQSl3Q==
