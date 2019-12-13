@@ -13,8 +13,6 @@ export default class User {
 
         firebase.auth().signInWithPopup(provider).then(function(result) {
             const user = result.additionalUserInfo.profile;
-            //this.setToken(result.credential.accessToken);
-            //this.setUsername(user.name);
             console.log(user.name)
 
         }).catch(function(error) {
