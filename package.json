@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.7.2",
+    "@material-ui/icons": "^4.5.1",
+    "@reduxjs/toolkit": "^1.1.0",
     "axios": "^0.19.0",
     "bootstrap": "^4.4.1",
     "firebase": "^7.5.0",
@@ -10,6 +13,10 @@
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
+<<<<<<< HEAD
+=======
+    "react-icons-kit": "^1.3.1",
+>>>>>>> 5b3548a401be142f75572f8f2301258bc74c0adf
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
