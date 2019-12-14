@@ -2,20 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from "react-redux";
+import store from "./stores/";
 import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase/app'
 import 'firebase/auth'
-
-/*
-import AppContainer from './containers/AppContainer';
-import {createStore} from 'redux';
-import Reducer from './reducers/index.js'
-import { Provider } from 'react-redux';
-
-//reducer
-const store = createStore(Reducer)
-
-*/
 
 //BootStrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,12 +26,9 @@ firebase.initializeApp(firebaseConfig)
 
 
 ReactDOM.render(
-/*
     <Provider store={store}>
-      <AppContainer />
-    </Provider>
-*/
     <App />
+    </Provider>
 , document.getElementById('root')
 );
 
