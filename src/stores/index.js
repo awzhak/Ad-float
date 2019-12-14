@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { configureStore } from "redux-starter-kit";
+import { configureStore } from "@reduxjs/toolkit";
 
 import { name, id } from "./user";
 
