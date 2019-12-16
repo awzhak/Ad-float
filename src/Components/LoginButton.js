@@ -3,50 +3,54 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from 'react-bootstrap/Button'
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import { setName, clearName } from "./../stores/user";
-import { setId, clearId } from "./../stores/user";
+import { setName, clearName, setMail, clearMail, setIcon, clearIcon } from "./../stores/user";
 
 
 function LoginButton() {
 
-    const name = useSelector(state => state.name.name);
-    const id = useSelector(state => state.id.id);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const name = useSelector(state => state.name.name);
+  const mail = useSelector(state => state.mail.mail);
+  const icon = useSelector(state => state.icon.icon);
 
-    function Login() {
-        console.log("aa")
-        const provider = new firebase.auth.GoogleAuthProvider();
+  function Login() {
+    console.log("aa")
+    const provider = new firebase.auth.GoogleAuthProvider();
 
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            const user = result.additionalUserInfo.profile;
-            console.log(user)
-            dispatch(setName(user.name))
-            dispatch(setId(user.email))
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      const user = result.additionalUserInfo.profile;
+      console.log(user)
 
-        }).catch(function(error) {
-            console.log(error)
-            console.log(error.message)
-        })
-    }
+      dispatch(setName(user.name))
+      dispatch(setMail(user.email))
+      dispatch(setIcon(user.picture))
 
-    function Logout() {
-        firebase.auth().signOut().then(function() {
-            dispatch(clearName())
-            dispatch(clearId())
+    }).catch(function(error) {
+      console.log(error)
+      console.log(error.message)
+    })
+  }
 
-        }).catch(function(e){
-            console.log(e);
-        })
-    }
+  function Logout() {
+    firebase.auth().signOut().then(function() {
+      dispatch(clearName())
+      dispatch(clearMail())
+      dispatch(clearIcon())
 
-    return (
-        <>
-            <h1>{name}</h1>
-            <h1>{id}</h1>
-            <Button onClick={Login}>Login</Button>
-            <Button onClick={Logout}>Logout</Button>
-        </>
-    );
+    }).catch(function(e){
+      console.log(e);
+    })
+  }
+
+  return (
+    <>
+      <h1>{name}</h1>
+      <h1>{mail}</h1>
+      <img src={icon}></img>
+      <Button onClick={Login}>Login</Button>
+      <Button onClick={Logout}>Logout</Button>
+    </>
+  );
 }
 
 export default LoginButton;
