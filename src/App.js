@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Overlay from './Components/Overlay';
-//import Notice from './Components/Notice';
+import Original_Navbar from './Componets/Original_Navbar';
 
 
 function App () {
   return (
     <div className="App">
-      <Overlay />
+      <Original_Navbar />
     </div>
   );
 }

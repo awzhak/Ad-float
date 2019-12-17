@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Overlay } from "react-bootstrap";
-import {ButtonToolbar, Button, Popover} from "react-bootstrap";
-import {ListGroup, Card, Alert} from "react-bootstrap";
+import {ButtonToolbar, Popover} from "react-bootstrap";
+import {ListGroup, Card} from "react-bootstrap";
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
+import MailIcon from '@material-ui/icons/Mail'
+import IconButton from '@material-ui/core/IconButton';
 
 const StyledBadge = withStyles(() => ({
     badge: {
@@ -11,19 +13,21 @@ const StyledBadge = withStyles(() => ({
     },
   }))(Badge);
 
-function Notice() {
+function MailNotice() {
     const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);
     const ref = useRef(null);
 
     // api通信→いいねn件ある
-    const loveMail = 100;
+    const loveMail = 10;
     // api通信→DMが5件きました
     const directMail = 5;
     // api通信→ランクインした
     const rankMail = 1;
 
-    const handleClick = event => {
+    const sum = loveMail + directMail + rankMail;
+
+    const handleClick = (event) => {
       setShow(!show);
       setTarget(event.target);
     };
@@ -31,24 +35,27 @@ function Notice() {
     const onHide = () => {
         setShow(!show);
     }
-  
+
     return (
-        <div>
+        <div clasName="Mail-Notice">
       <ButtonToolbar ref={ref}>
-        <Button onClick={handleClick}>メールのアイコン</Button>
-  
+      <IconButton onClick={handleClick} aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={sum} color="secondary">
+            <MailIcon />
+          </Badge>
+      </IconButton>
+
         <Overlay
           show={show}
-          target={target}
+          target={ref.current}
           placement="bottom"
           container={ref.current}
           containerPadding={20}
           onHide={onHide}
-          rootCloseEvent='click' // ？
           rootClose={true}
         >
           <Popover id="popover-contained">
-            <Popover.Title as="h3">メール一覧</Popover.Title>
+            <Popover.Title as="h3" className="font-black">メール一覧</Popover.Title>
             <Popover.Content>
             <Card style={{ width: '17rem' }}>
             <ListGroup variant="flush">
@@ -72,4 +79,4 @@ function Notice() {
     );
   }
 
-export default Notice;
+export default MailNotice;
