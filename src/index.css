@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.popover-body {
+  padding: 0px !important;
+}
+
+.card-link {
+  margin-left: 0rem !important;
+}
+
+.right {
+  text-align: right;
+  float: right;
+}
