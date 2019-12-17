@@ -213,7 +213,7 @@ export default function Original_Navbar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={10} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
@@ -281,7 +281,6 @@ export default function Original_Navbar() {
           ))}
         </List>
       </SwipeableDrawer>
-      <p>teastssssssssssssss</p>
       <Footer/>
     </div>
   );

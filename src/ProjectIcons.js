@@ -4,8 +4,7 @@ import { Icon } from 'react-icons-kit';
 import { ic_email } from 'react-icons-kit/md';
 import { bell } from 'react-icons-kit/iconic';
 import {person} from 'react-icons-kit/iconic/person';
-import {ic_mail_outline} from 'react-icons-kit/md/ic_mail_outline'
-
+import {github,twitter} from 'react-icons-kit/icomoon/';
 
 //ナビゲーションバーのダイレクトメッセージアイコン
 export const DirectMessage = () => <Icon
@@ -28,8 +27,15 @@ export const Person = () => <Icon
   icon={person}
 />;
 
-export const Mail = () => <Icon
-  size={25}
-  style={{marginRight:10}}
-  icon={ic_mail_outline}
+
+//footerのアイコン
+export const Github = () => <Icon
+  size={30}
+  icon={github}
+/>;
+
+export const Twitter = () => <Icon
+  size={30}
+  style={{marginLeft:50}}
+  icon={twitter}
 />;

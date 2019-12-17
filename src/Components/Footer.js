@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, Row, Col } from 'react-bootstrap';
+import {Github,Twitter} from '../ProjectIcons';
 
 export default function Footer(){
   return(
@@ -18,7 +19,8 @@ export default function Footer(){
             </div>
           </Col>
           <Col>
-            twitter
+            <Github/>
+            <Twitter/>
           </Col>
         </Row>
       </Container>
