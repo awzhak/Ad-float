@@ -18,7 +18,7 @@ export const name = createSlice({
 export const mail = createSlice({
   name: "mail",
   initialState: {
-    mail: ''
+    mail: null
   },
   reducers: {
     setMail: (state, action) => {
@@ -33,7 +33,7 @@ export const mail = createSlice({
 export const icon = createSlice({
   name: "icon",
   initialState: {
-    icon: ''
+    icon: null
   },
   reducers: {
     setIcon: (state, action) => {
