@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
-import {Collapse,Container,Row,Col,Card} from 'react-bootstrap'; 
+import {Collapse,Row,Col} from 'react-bootstrap'; 
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import Button from '@material-ui/core/Button';
 
 //プロフィールの紹介文コンポーネント
 function Sentence(){
@@ -22,6 +23,11 @@ function Sentence(){
                 marginRight:70,
               }}
         >
+          <Col md={{ span: 4, offset: 11 }}>
+            <Button variant="outlined" color="primary">
+              編集
+            </Button>
+          </Col>
           <Col xs={12} md={5}>
             xs=6 md=4
           </Col>
