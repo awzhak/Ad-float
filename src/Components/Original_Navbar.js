@@ -23,7 +23,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import Footer from './Footer';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -281,7 +280,7 @@ export default function Original_Navbar() {
           ))}
         </List>
       </SwipeableDrawer>
-      <Footer/>
+      
     </div>
   );
 }

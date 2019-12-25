@@ -41,9 +41,9 @@ code {
 }
 
 /*案件詳細画面のcss*/
-.line_left{
-  padding: 0.5em 1em;
-    margin: 2em 0;
-    color: #474747;
-    border-left: double 7px #4ec4d3;/*左線*/
+.sen{
+  border-left:solid 5px #11FFFF;
+  padding:5px 0px 5px 20px;
+  margin-bottom:20px;
+  background-color:#F5F5F5;
 }
