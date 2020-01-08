@@ -1,14 +1,13 @@
 import React from 'react';
 import LoginButton from './Components/LoginButton';
 import Footer from './Components/Footer';
-import AdList from './Pages/AdList'
+import Home from './Pages/Home'
 
 function App() {
 
   return (
     <div className="App">
-      <AdList></AdList>
-      <Footer></Footer>
+      <Home></Home>
     </div>
   );
 }

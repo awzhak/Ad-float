@@ -8,7 +8,7 @@ function AdList() {
       <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 15 }'>
         <div class="grid-item">
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="a.jpg" />
+            <Card.Img variant="top" src="aaa.svg" />
             <Card.Body>
               <Card.Title>Card Title</Card.Title>
               <Card.Text>
