@@ -4,21 +4,23 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    textAlign: "center"
+  },
   item: {
     flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   },
   calitem: {
+    textAlign: "center",
     maxWidth: "80rem",
     minWidth: "900px",
     paddingTop: 20,
-    paddingRight: 100,
-    paddingBottom: 50,
-    paddingLeft: 100
+    paddingBottom: 55,
   },
 }));
 
@@ -38,6 +40,8 @@ function HomeCarousel() {
       <div className={classes.item}>
       <Grid 
         container spacing={3}
+        justify="center"
+        alignItems="center"
       >
         <Grid item >
           <Card bg="dark" text="white" style={{ width: '13rem' }}>
