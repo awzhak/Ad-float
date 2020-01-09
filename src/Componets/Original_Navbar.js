@@ -23,7 +23,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import Footer from './Footer';
 // メール通知
 import MailNotice from '../Components/MailNotice';
 
@@ -215,12 +214,12 @@ export default function Original_Navbar() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <MailNotice />
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+            <IconButton aria-label="show 4 new mails" color="inherit">
+            <Badge badgeContent={16} color="secondary">
+              <MailIcon />
+            </Badge>
             </IconButton>
+              <MailNotice />
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -280,8 +279,6 @@ export default function Original_Navbar() {
           ))}
         </List>
       </SwipeableDrawer>
-      <p>teastsssssss</p>
-      <Footer/>
     </div>
   );
 }

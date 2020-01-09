@@ -4,7 +4,7 @@ import {ButtonToolbar, Popover} from "react-bootstrap";
 import {ListGroup, Card} from "react-bootstrap";
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
-import MailIcon from '@material-ui/icons/Mail'
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import IconButton from '@material-ui/core/IconButton';
 
 const StyledBadge = withStyles(() => ({
@@ -15,11 +15,11 @@ const StyledBadge = withStyles(() => ({
 
 function MailNotice() {
     const [show, setShow] = useState(false);
-    const [target, setTarget] = useState(null);
+    //const [target, setTarget] = useState(null);
     const ref = useRef(null);
 
     // api通信→いいねn件ある
-    const loveMail = 10;
+    const loveMail = 12;
     // api通信→DMが5件きました
     const directMail = 5;
     // api通信→ランクインした
@@ -29,7 +29,7 @@ function MailNotice() {
 
     const handleClick = (event) => {
       setShow(!show);
-      setTarget(event.target);
+      //setTarget(event.target);
     };
 
     const onHide = () => {
@@ -37,11 +37,11 @@ function MailNotice() {
     }
 
     return (
-        <div clasName="Mail-Notice">
+      <div className="Mail-Notice">
       <ButtonToolbar ref={ref}>
-      <IconButton onClick={handleClick} aria-label="show 4 new mails" color="inherit">
+      <IconButton onClick={handleClick} aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={sum} color="secondary">
-            <MailIcon />
+            <NotificationsIcon />
           </Badge>
       </IconButton>
 

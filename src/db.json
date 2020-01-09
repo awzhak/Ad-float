@@ -1,0 +1,105 @@
+{
+    "something":{
+        "ad":{
+            "1":{
+                "recruitment_number":1,
+                "title":"たぴおぉか",
+                "artist":{
+                    "Alice":true
+                }
+            },
+            "2":{
+                "recuitment_number":2,
+                "title":"タイムセール",
+                "artist":{
+                    "Bob":true
+                }
+            },
+            "3":{
+                "recuitment_number":3,
+                "title":"グーグル",
+                "artist":{
+                    "Bob":true
+                }
+            }
+        },
+        "recruitment":{
+            "1":{
+                "Recruitment_number":1,
+                "title":"theAlley広告",
+                "recruiter":{
+                    "theAlley":true
+                }
+            },
+            "2":{
+                "Recruitment_number":2,
+                "title":"アマゾン商品",
+                "recruiter":{
+                    "amazon":true
+                }
+            },
+            "3":{
+                "Recruitment_number":3,
+                "title":"google",
+                "recruiter":{
+                    "google":true
+                }
+            }
+        },
+        "person":{
+            "Alice": {
+                "id": 1,
+                "name": "Alice",
+                "introduction":"Hello"
+            },
+            "Bob": {
+                "id":2,
+                "name": "Bob",
+                "introduction":"ようこそ"
+            }
+        },
+        "company":{
+            "google":{
+                "id":1,
+                "name":"google",
+                "introduction":"来い"
+            },
+            "amazon":{
+                "id":2,
+                "name":"amazon",
+                "introduction":"じょい"
+            },
+            "theAlley":{
+                "id":3,
+                "name":"theAlley",
+                "introduction":"たぴおか"
+            }
+        },
+        "messages":{
+            "1":{
+                "sender":{
+                    "Alice":true
+                },
+                "receiver":{
+                    "Bob":true
+                },
+                "message":"Hello",
+                "timestamp":"",
+                "check":"false"
+            },
+            "2":{
+                "sender":{
+                    "Bob":true
+                },
+                "receiver":{
+                    "Alice":true
+                },
+                "message":"ようこそ",
+                "timestamp":"",
+                "check":"false"
+                
+            }
+        }
+             
+    }
+}

@@ -7,6 +7,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+//Switch
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,17 +26,85 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function AlignItemsList() {
+export default function Notice() {
+// Notice
   const classes = useStyles();
 
-  return (
-    <List className={classes.root}>
-      <ListItem alignItems="flex-start">
+// Switch
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true,
+    checkedC: true,
+  });
+
+  const handleChange = name => event => {
+    setState({ ...state, [name]: event.target.checked });
+  };
+
+  // コンテンツ
+  const items = [
+    {name: 'わいちゃん', text: 'いいね', kind: 'love'},
+    {name: 'なあちゃん', text: 'ライド', kind: 'rank'},
+    {name: 'いいちゃん', text: 'しねぇぇ', kind: 'DM'},
+    {name: 'うったんちゃん', text: 'っせえ', kind: 'rank'},
+    {name: 'むっちゃん', text: 'くらえ！おら！', kind: 'DM'},
+    {name: 'わいちゃん', text: 'いいね', kind: 'love'},
+    {name: 'なあちゃん', text: 'ライド', kind: 'rank'},
+    {name: 'いいちゃん', text: 'しねぇぇ', kind: 'DM'},
+    {name: 'うったんちゃん', text: 'っせえ', kind: 'rank'},
+    {name: 'むっちゃん', text: 'くらえ！おら！', kind: 'DM'},
+  ];
+
+
+return (
+  <Container maxWidth="xs">
+  <FormGroup row>
+      <FormControlLabel
+        control={
+          <Switch
+        checked={state.checkedA}
+        onChange={handleChange('checkedA')}
+        value="checkedA"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
+        }
+        label="💛"
+      />
+      <FormControlLabel
+        control={
+          <Switch
+        checked={state.checkedB}
+        onChange={handleChange('checkedB')}
+        value="checkedB"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
+        }
+        label="👤"
+      />
+      <FormControlLabel
+        control={
+          <Switch
+        checked={state.checkedC}
+        onChange={handleChange('checkedC')}
+        value="checkedC"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
+        }
+        label="👑"
+      />
+    </FormGroup>
+  <List className={classes.root}>
+  <Divider component="li" />
+      {items.map((item,index) => (
+        <div key={index} className="Mail-List">
+          {state.checkedA && item.kind === 'love'? 
+        <div className="Mail-Item">
+        <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar alt="Remy Sharp" />
         </ListItemAvatar>
         <ListItemText
-          primary="Brunch this weekend?"
+          primary={item.name}
           secondary={
             <React.Fragment>
               <Typography
@@ -38,20 +113,23 @@ export default function AlignItemsList() {
                 className={classes.inline}
                 color="textPrimary"
               >
-                Ali Connors
+                {item.kind === 'love' ? '💛': item.kind === 'DM' ? '👤': '👑'}：
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
+              {"いいねされました"}
             </React.Fragment>
           }
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
+      <Divider component="li" />
+      </div> :
+        state.checkedB && item.kind === 'DM' ?
+        <div className="Mail-Item">
+        <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+          <Avatar alt="Remy Sharp" />
         </ListItemAvatar>
         <ListItemText
-          primary="Summer BBQ"
+          primary={item.name}
           secondary={
             <React.Fragment>
               <Typography
@@ -60,20 +138,23 @@ export default function AlignItemsList() {
                 className={classes.inline}
                 color="textPrimary"
               >
-                to Scott, Alex, Jennifer
+                {item.kind === 'love' ? '💛': item.kind === 'DM' ? '👤': '👑'}：
               </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
+              {item.text}
             </React.Fragment>
           }
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
+      <Divider component="li" />
+      </div> :
+        state.checkedC && item.kind === 'rank' ?
+        <div className="Mail-Item">
+        <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+          <Avatar alt="Remy Sharp" />
         </ListItemAvatar>
         <ListItemText
-          primary="Oui Oui"
+          primary={item.name}
           secondary={
             <React.Fragment>
               <Typography
@@ -82,13 +163,19 @@ export default function AlignItemsList() {
                 className={classes.inline}
                 color="textPrimary"
               >
-                Sandra Adams
+                {item.kind === 'love' ? '💛': item.kind === 'DM' ? '👤': '👑'}：
               </Typography>
-              {' — Do you have Paris recommendations? Have you ever…'}
+              {"ランクイン"}
             </React.Fragment>
           }
         />
       </ListItem>
-    </List>
+      <Divider component="li" />
+      </div> : ''}
+      </div>
+      ))}
+      {!state.checkedA && !state.checkedB && !state.checkedC ? '通知はありません' : ''}
+  </List>
+  </Container>
   );
 }
