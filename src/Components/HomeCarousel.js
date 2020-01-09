@@ -4,9 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: "brack"
-  },
   item: {
     flexGrow: 1
   },
@@ -17,9 +14,10 @@ const useStyles = makeStyles(theme => ({
   },
   calitem: {
     maxWidth: "80rem",
+    minWidth: "900px",
     paddingTop: 20,
     paddingRight: 100,
-    paddingButtom: 20,
+    paddingBottom: 50,
     paddingLeft: 100
   },
 }));
@@ -42,7 +40,7 @@ function HomeCarousel() {
         container spacing={3}
       >
         <Grid item >
-          <Card bg="dark" text="white" style={{ width: '12rem' }}>
+          <Card bg="dark" text="white" style={{ width: '13rem' }}>
             <Card.Img variant="top" src="a.jpg" />
             <Card.Body>
               <Card.Title>{color}</Card.Title>
@@ -55,7 +53,7 @@ function HomeCarousel() {
         </Grid>
 
         <Grid item >
-          <Card bg="dark" text="white" style={{ width: '12rem' }}>
+          <Card bg="dark" text="white" style={{ width: '13rem' }}>
             <Card.Img variant="top" src="a.jpg" />
             <Card.Body>
               <Card.Title>{color}</Card.Title>
@@ -68,7 +66,7 @@ function HomeCarousel() {
         </Grid>
 
         <Grid item >
-          <Card bg="dark" text="white" style={{ width: '12rem' }}>
+          <Card bg="dark" text="white" style={{ width: '13rem' }}>
             <Card.Img variant="top" src="a.jpg" />
             <Card.Body>
               <Card.Title>{color}</Card.Title>
@@ -86,13 +84,10 @@ function HomeCarousel() {
 
   return (
     <Carousel
-      bg="dark"
-    interval={3000}
+      interval={3000}
       direction={direction}
       onSelect={handleSelect}
-      nextIcon
-      className={classes.root}
-      indicators={false}
+      indicators
     >
       {carouselItems}
     </Carousel>
