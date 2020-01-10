@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Avatar, Chip, Toolbar, Typography, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@material-ui/core';
-
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 
@@ -63,7 +62,15 @@ function ProfileDetails() {
           
           <TableRow>
             <TableCell className={classes.thcell} align="center">Skill</TableCell>
-            <TableCell className={classes.cell} align="right"><Chip label="aaa" variant="outlined" /><Chip label="aaa" variant="outlined" /><Chip label="aaa" variant="outlined" /><br></br><Chip label="aaa" variant="outlined" /><Chip label="aaa" variant="outlined" /><Chip label="aaa" variant="outlined" /></TableCell>
+            <TableCell className={classes.cell} align="right">
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
+              <br/>
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
+            </TableCell>
           </TableRow>
 
           <TableRow>

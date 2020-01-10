@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import {Github,Twitter} from '../ProjectIcons';
 
 export default function Footer(){
