@@ -6,12 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   card: {
     width: "14rem",
-    marginRight: 3,
     marginBottom: 15
   },
   cardgrid: {
     textAlign: "center",
-    margin: 20
+    margin: 30
   }
 }));
 
@@ -40,7 +39,7 @@ function LatestPosts() {
       <Typography variant="h3" gutterBottom color='primary'>
         最新の投稿
       </Typography>
-      <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 15 }'>
+      <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
         {latestpost}
       </div>
     </div>
