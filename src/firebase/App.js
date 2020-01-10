@@ -12,9 +12,27 @@ import axios from 'axios'
 
 
 function App() {
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    let adref = db.collection('ad');
+    adref.get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        let ref = doc.data().path
+        console.log(ref)
+        ref.get().then(docsnapshot => {
+          console.log(docsnapshot.data().title)
+          setData(docsnapshot.data().description)
+        })
+      })
+    })
+  },[])
+
   return (
     <div className="App">
       <p>Hello</p>
+      {data}
     </div>
   );
 }
