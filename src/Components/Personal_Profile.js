@@ -6,12 +6,12 @@ import Button from '@material-ui/core/Button';
 
 //プロフィールの紹介文コンポーネント
 function Sentence(){
-  const Line_Right={
+  const Line_Left={
     fontSize:20,
     fontWeight:900,
     marginBottom:60
   };
-  const Line_Left={
+  const Line_Right={
     fontSize:20
   };
 
@@ -28,36 +28,38 @@ function Sentence(){
               編集
             </Button>
           </Col>
-          <Col xs={12} md={5}>
-            xs=6 md=4
+          <Col xs={12} md={4}>
+            xs=12 md=5
           </Col>
           <Col xs={6} md={7}
           style={{marginTop:10}}
           >
             <Row>
               <Col md={4}>
-                <p className="sen" style={Line_Right}>募集企業</p>
+                <p className="sen" style={Line_Left}>募集企業</p>
               </Col>
-              <Col md={7} style={Line_Left}>
+              <Col md={7} style={Line_Right}>
                 株式会社example
               </Col>
               <Col md={4}>
-                <p className="sen" style={Line_Right}>募集期間</p>
+                <p className="sen" style={Line_Left}>募集期間</p>
               </Col>
-              <Col md={7} style={Line_Left}>
+              <Col md={7} style={Line_Right}>
                 2019/12/01～2020/03/01
               </Col>
               <Col md={4}>
-                <p className="sen" style={Line_Right}>報酬金範囲</p>
+                <p className="sen" style={Line_Left}>報酬金範囲</p>
               </Col>
-              <Col md={7} style={Line_Left}>
+              <Col md={7} style={Line_Right}>
                 1,000円～50,000円
               </Col>
-            </Row> 
+            </Row>
           </Col>
-          <Col xs={12} md={2}>
-            <p className="sen" style={{fontSize:20,fontWeight:900,}}>案件詳細</p>
-            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+          <Col md={2}>
+            <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
+            <Col md={2} style={{fontSize:20}}>
+              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            </Col>
           </Col>
         </Row>
     </dev>
