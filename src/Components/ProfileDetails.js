@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import { Avatar, Chip, Toolbar, Typography, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@material-ui/core';
 
@@ -74,6 +75,13 @@ function ProfileDetails() {
           <TableRow>
             <TableCell className={classes.thcell} align="center">詳細</TableCell>
             <TableCell className={classes.cell} align="right">わたしは大崎甘奈</TableCell>
+          </TableRow>
+
+          <TableRow>
+            <TableCell className={classes.thcell} align="center"></TableCell>
+            <TableCell className={classes.cell} align="right">
+              <Link to='editprofile'>編集</Link>
+            </TableCell>
           </TableRow>
 
           </TableBody>
