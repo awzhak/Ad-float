@@ -1,9 +1,7 @@
 import React from 'react';
-import ProfileDetails from '../Components/ProfileDetails'
-import LatestPosts from '../Components/LatestPosts'
-
-import { Button } from '@material-ui/core';
-
+import ProfileDetails from './../Components/ProfileDetails'
+import LatestPosts from './../Components/LatestPosts'
+import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -15,11 +13,16 @@ const useStyles = makeStyles(theme => ({
 function UserMypage() {
   const classes = useStyles();
 
+  const colors = [ 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink' ]
+
   return (
     <div className={classes.root}>
       <center>
-        <ProfileDetails></ProfileDetails>
-        <LatestPosts></LatestPosts>
+        <ProfileDetails />
+        <Typography variant="h3" gutterBottom color='primary'>
+          最新の投稿
+        </Typography>
+        <LatestPosts colors={colors}/>
       </center>
     </div>
   );

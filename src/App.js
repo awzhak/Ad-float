@@ -15,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Dbg />
         <Switch>
           <Route path='/' exact component={Home}/>
           <Route path='/mypage' exact component={UserMypage} />

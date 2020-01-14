@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Button } from 'react-bootstrap'
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -14,12 +14,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function LatestPosts() {
+function LatestPosts(props) {
   const classes = useStyles();
 
-  const colors = ['Red','Yellow','Green','Blue','Violet', 'Red','Yellow','Green','Blue','Violet', 'Red','Yellow','Green','Blue','Violet'];
-  
-  const latestpost = colors.map((color,index) =>
+  const latestpost = props.colors.map((color,index) =>
     <div class="grid-item">
       <Card className={classes.card}>
         <Card.Img variant="top" src="aaa.svg" />
@@ -36,14 +34,11 @@ function LatestPosts() {
 
   return (
     <div className={classes.cardgrid}>
-      <Typography variant="h3" gutterBottom color='primary'>
-        最新の投稿
-      </Typography>
       <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
         {latestpost}
       </div>
     </div>
   );
-  }
+}
   
-  export default LatestPosts;
+export default LatestPosts;
