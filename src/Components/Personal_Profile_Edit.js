@@ -4,12 +4,48 @@ import {Button,TextField} from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import {MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
-
+import NumberFormat from 'react-number-format';
+import PropTypes from 'prop-types';
 
 //金額コンポーネント
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
 
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={values => {
+        onChange({
+          target: {
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      isNumericString
+      prefix="￥"
+    />
+  );
+}
+
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 function Sentence_Edit(){
+  const [values, setValues] = React.useState({
+    textmask: '(1  )    -    ',
+    numberformat: '1320',
+  });
+  const handleChange = name => event => {
+    setValues({
+      ...values,
+      [name]: event.target.value,
+    });
+  };
+
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -75,7 +111,15 @@ function Sentence_Edit(){
               <p className="sen" style={Line_Left}>報酬金範囲</p>
             </Col>
             <Col md={7} style={Line_Right}>
-            
+              <TextField
+              label="英半角で入力して下さい"
+              value={values.numberformat}
+              onChange={handleChange('numberformat')}
+              id="formatted-numberformat-input"
+              InputProps={{
+                inputComponent: NumberFormatCustom,
+              }}
+              />
             </Col>
           </Row>
         </Col>
