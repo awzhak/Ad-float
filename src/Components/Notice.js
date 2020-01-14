@@ -41,7 +41,7 @@ export default function Notice() {
     setState({ ...state, [name]: event.target.checked });
   };
 
-  // コンテンツ
+  // 通知リスト
   const items = [
     {name: 'わいちゃん', text: 'いいね', kind: 'love'},
     {name: 'なあちゃん', text: 'ライド', kind: 'rank'},
