@@ -51,11 +51,14 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
     height: 'flex',
+    position: 'absolute',
+    zIndex: -1,
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
     width: 300,
     textTransform: 'none',
+    maxWidth: 'fit-content',
   },
   tab: {
     padding: '0px',
@@ -117,7 +120,7 @@ export default function VerticalTabs() {
           ))}
       </Tabs>
       <TabPanel className={classes.panel} value={value} index={0}>
-          Dmトップページ
+          DMtop
       </TabPanel>
       {items.map((item,index) => (
         <TabPanel className={classes.panel} value={value} index={index + 1}>
