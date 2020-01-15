@@ -4,11 +4,17 @@ import Button from 'react-bootstrap/Button'
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { setName, clearName, setMail, clearMail, setIcon, clearIcon } from "./../stores/user";
+import { makeStyles } from '@material-ui/core/styles';
 
-
+const useStyles = makeStyles(theme => ({
+  btn: {
+    minWidth: '30px'
+  }
+}))
 function LoginButton() {
   const [ isauth, setIsauth ] = useState(false);
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const name = useSelector(state => state.name.name);
   const mail = useSelector(state => state.mail.mail);
@@ -29,8 +35,6 @@ function LoginButton() {
   });
 
   function Login() {
-    console.log("aa")
-
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(function() {
       const provider = new firebase.auth.GoogleAuthProvider();
@@ -69,13 +73,10 @@ function LoginButton() {
 
   return (
     <>
-      <h1>{name}</h1>
-      <h1>{mail}</h1>
-      <img src={icon}></img>
       {!isauth ? (
-        <Button onClick={Login}>Login</Button> 
+        <Button className={classes.btn} onClick={Login}>Login</Button> 
         ):(
-        <Button onClick={Logout}>Logout</Button>
+        <Button className={classes.btn} onClick={Logout}>Logout</Button>
       )
       }
     </>

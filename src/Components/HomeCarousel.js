@@ -5,7 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    textAlign: "center"
+    textAlign: "center",
+    zIndex: -1
   },
   item: {
     flexGrow: 1
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   calitem: {
     textAlign: "center",
-    maxWidth: "80rem",
+    maxWidth: "100%",
     minWidth: "900px",
     paddingTop: 20,
     paddingBottom: 55,
@@ -91,6 +92,7 @@ function HomeCarousel() {
       interval={3000}
       direction={direction}
       onSelect={handleSelect}
+      className={classes.root}
       indicators
     >
       {carouselItems}
