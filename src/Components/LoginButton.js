@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Button from 'react-bootstrap/Button'
 import firebase from 'firebase/app';
@@ -16,6 +16,14 @@ function LoginButton() {
   const [ isauth, setIsauth ] = useState(false);
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setIsauth(true)
+      }
+    })
+  });
 
   const name = useSelector(state => state.name.name);
   const mail = useSelector(state => state.mail.mail);

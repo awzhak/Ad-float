@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import firebase from 'firebase/app';
 import { setName, setMail, setIcon } from "./stores/user";
@@ -22,16 +22,13 @@ function App() {
         dispatch(setMail(user.email))
         dispatch(setIcon(user.photoURL))
       }
-      else {
-        
-      }
     })
   });
+  
   return (
     <div className="App">
       <BrowserRouter>
-        <Original_Navbar/>
-        <Dbg />
+        <Original_Navbar />
           <Switch>
             <Route path='/' exact component={Home}/>
             <Route path='/mypage' exact component={UserMypage} />

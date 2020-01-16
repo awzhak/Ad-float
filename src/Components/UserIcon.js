@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    zIndex: "1 !important"
   },
   btn: {
     minWidth: '30px',
