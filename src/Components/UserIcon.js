@@ -10,8 +10,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-  },
   btn: {
     minWidth: '30px',
     margin: '4px'
@@ -45,7 +43,7 @@ function UserIcon() {
   );
 
   return(
-    <div className={classes.root}>
+    <div>
       <ButtonToolbar ref={ref}>
         <IconButton onClick={handleClick} color="inherit">
           {Icon}
@@ -65,7 +63,7 @@ function UserIcon() {
             <Popover.Content>
               <Card style={{ width: '14rem' }}>
                 { iconurl ? (
-                  <Button className={classes.btn} href="/mypage">マイページへ</Button>
+                  <Button className={classes.btn} href="/mypage">マイページ</Button>
                 ):(null)}
                 <LoginButton />
               </Card>

@@ -20,7 +20,7 @@ code {
 .carousel-control-next,
 .carousel-control-prev,
 .carousel-indicators {
-    filter: invert(100%);
+  filter: invert(100%);
 }
 
 .MuiFab-root {
@@ -30,4 +30,8 @@ code {
 
 .MuiFab-root:focus {
 	outline:0;
+}
+
+.MuiAppBar-positionStatic {
+  position: relative !important;
 }
