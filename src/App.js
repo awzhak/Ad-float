@@ -1,14 +1,13 @@
 import React from 'react';
 import Original_Navbar from './Components/Original_Navbar';
-import PersonProfile from './Components/PersonalProfile';
-import PersonProfileEdit from './Components/PersonalProfileEdit';
+import CompanyPost from './Components/CompanyPost';
 
 
 function App() {
   return (
     <div className="App">
       <Original_Navbar />
-      <PersonProfileEdit />
+      <CompanyPost />
     </div>
   );
 }
