@@ -8,6 +8,7 @@ export default function Dbg() {
         <li><Link to='/'>home</Link></li>
         <li><Link to='/mypage'>mypage</Link></li>
         <li><Link to='/editprofile'>editprofile</Link></li>
+        <li><Link to='/adcard'>adcard</Link></li>
       </ui>
     </>
   );
