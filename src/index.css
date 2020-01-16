@@ -63,3 +63,10 @@ code {
   color: #000003;
 }
 /*footerのcssここまで*/
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+    filter: invert(100%);
+    z-index: inherit;
+}
