@@ -30,12 +30,11 @@ export const Person = () => <Icon
 
 //footerのアイコン
 export const Github = () => <Icon
-  size={30}
-  style={{marginLeft:30}}
+  size={25}
   icon={github}
 />;
 
 export const Twitter = () => <Icon
-icon={twitter}
-  size={30}
+  icon={twitter}
+  size={25}
 />;

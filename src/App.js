@@ -30,20 +30,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Original_Navbar />
+        <Original_Navbar/>
         <Dbg />
-        <div
-          style={{
-            zIndex: -5
-          }}
-        >
           <Switch>
             <Route path='/' exact component={Home}/>
             <Route path='/mypage' exact component={UserMypage} />
             <Route path='/editprofile' component={EditProfile} />
             <Route path='/adcard' component={AdCard} />
           </Switch>
-        </div>
       </BrowserRouter>
       <Footer></Footer>
     </div>

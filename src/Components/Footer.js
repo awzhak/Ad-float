@@ -1,35 +1,73 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import {Github,Twitter} from '../ProjectIcons';
+
+import { Fab  } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { Github, Twitter } from './../ProjectIcons';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    minHeight: '150px',
+    width: '100%',
+    minWidth: '420px',
+    backgroundColor: '#EEEEEE',
+    fontSize: '15px',
+    bottom: 0
+  },
+  items: {
+    padding: '20px'
+  },
+  aaaa: {
+    paddingTop: '10px',
+    color: '#00000f',
+    position: 'relative'
+  },
+  siteicons: {
+    textAlign: 'right',
+    paddingRight: '20px',
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  copyright: {
+    textAlign: 'center',
+    fontSize: '13px',
+    color: '#000003',
+    paddingBottom: 3,
+    marginBottom: 0
+  }
+}));
 
 export default function Footer(){
+  const classes = useStyles();
+
   return(
-    <body className="footer">
-      <div className="aweiof">
+    <div className={classes.root}>
+      <div className={classes.items}>
         <Row>
           <Col>
-            <div className="aaaa">
-              利用規約
-              <br></br>
-              <br></br>
-              Mail： AdFloat@adfloat.onion
-              <br></br>
-              <br></br>
-              利用規約
+            <div className={classes.aaaa}>
+              <p>利用規約</p>
+              <p>Mail： AdFloat@adfloat.onion</p>
             </div>
           </Col>
           <Col>
-            <div className="aad32">
-              <Twitter/>
-              <Github/>
+            <div className={classes.siteicons}>
+              <Fab size="medium" className={classes.margin} target="_blank" href="https://twitter.com/micrm1">
+                <Twitter/>
+              </Fab >
+              <Fab size="medium" className={classes.margin} target="_blank" href="https://github.com/micrm1/Ad-float">
+                <Github/>
+              </Fab >
             </div>
           </Col>
         </Row>
       </div>
-      <div className="aaai">
-        ©2019 - T.M.SKY
-      </div>
-
-    </body>
+      <p className={classes.copyright}>©2019 - T.M.SKY</p>
+    </div>
   );
 }

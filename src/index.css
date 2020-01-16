@@ -17,56 +17,17 @@ code {
     monospace;
 }
 
-/*footerのcss*/
-.footer{
-  min-height: 200px;
-  width: 100%;
-  background-color: #EEEEEE;
-  font-size: 15px;
-  margin-top: auto;
-  bottom: 0;
-  margin-top: 100vh;
-}
-
-.aweiof {
-  padding: 20px;
-}
-
-.aaaa {
-  background-color: #EEEEEE;
-  padding-top: 10px;
-  color: #00000f;
-  position: relative;
-
-}
-
-.aad32 {
-  text-align: right;
-  padding-right: 20px;
-  background-color: #EEEEEE;
-  margin-bottom: 5px;
-  color: #00000f; 
-  position: absolute;
-  right: 0;
-  bottom: 0;
-
-}
-
-.aae {
-  padding-top: 3px;
-}
-
-.aaai {
-  margin-bottom: 2px;
-  text-align: center;
-  font-size: 13px;
-  color: #000003;
-}
-/*footerのcssここまで*/
-
 .carousel-control-next,
 .carousel-control-prev,
 .carousel-indicators {
     filter: invert(100%);
-    z-index: inherit;
+}
+
+.MuiFab-root {
+  background-color: #EEEEEE !important;
+  box-shadow: none !important;
+}
+
+.MuiFab-root:focus {
+	outline:0;
 }

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useRef } from 'react';
+import { useSelector } from "react-redux";
 import LoginButton from './LoginButton';
 
 
-import { Overlay, ButtonToolbar, Popover, Card, ListGroup, Button } from "react-bootstrap";
+import { Overlay, ButtonToolbar, Popover, Card, Button } from "react-bootstrap";
 
 import { Avatar, IconButton } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    zIndex: "3000 !important",
+    zIndex: "1 !important"
   },
   btn: {
     minWidth: '30px',
@@ -61,7 +61,7 @@ function UserIcon() {
           container={ref.current}
           rootClose={true}
         >
-          <Popover id="popover-contained">
+          <Popover id="popover-contained" className={classes.root}>
             <Popover.Title as="h3" className="font-black">sssss</Popover.Title>
             <Popover.Content>
               <Card style={{ width: '14rem' }}>
