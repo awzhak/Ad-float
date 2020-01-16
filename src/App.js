@@ -1,5 +1,8 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import firebase from 'firebase/app';
+import { setName, setMail, setIcon } from "./stores/user";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dbg from './Components/Dbg';
 import Original_Navbar from './Components/Original_Navbar';
 import Footer from './Components/Footer';
@@ -10,7 +13,20 @@ import EditProfile from './Pages/EditProfile';
 
 
 function App() {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(setName(user.name))
+        dispatch(setMail(user.email))
+        dispatch(setIcon(user.photoURL))
+      }
+      else {
+        
+      }
+    })
+  });
   return (
     <div className="App">
       <BrowserRouter>

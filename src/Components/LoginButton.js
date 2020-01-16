@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Button from 'react-bootstrap/Button'
 import firebase from 'firebase/app';
@@ -20,20 +20,6 @@ function LoginButton() {
   const name = useSelector(state => state.name.name);
   const mail = useSelector(state => state.mail.mail);
   const icon = useSelector(state => state.icon.icon);
-
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setIsauth(true)
-        dispatch(setName(user.name))
-        dispatch(setMail(user.email))
-        dispatch(setIcon(user.photoURL))
-      }
-      else {
-        
-      }
-    })
-  });
 
   function Login() {
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
