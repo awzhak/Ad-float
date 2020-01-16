@@ -10,6 +10,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    zIndex: "3000 !important",
+  },
   btn: {
     minWidth: '30px',
     margin: '4px'
@@ -43,7 +46,7 @@ function UserIcon() {
   );
 
   return(
-    <div className="Mail-Notice">
+    <div className={classes.root}>
       <ButtonToolbar ref={ref}>
         <IconButton onClick={handleClick} color="inherit">
           {Icon}
