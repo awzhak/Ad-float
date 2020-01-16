@@ -1,8 +1,10 @@
 import React,{useState} from 'react';
-import {Collapse,Row,Col} from 'react-bootstrap'; 
+import {Card,Collapse,Row,Col} from 'react-bootstrap'; 
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 //プロフィールの紹介文コンポーネント
 function Sentence(){
@@ -51,7 +53,7 @@ function Sentence(){
                 <p className="sen" style={Line_Left}>報酬金範囲</p>
               </Col>
               <Col md={7} style={Line_Right}>
-                1,000円～50,000円
+                50,000円
               </Col>
             </Row>
           </Col>
@@ -66,28 +68,49 @@ function Sentence(){
   );
 }
 
-//collapse menuのコンポーネント
-function Collapse_button(){
-  const [open,setOpen] = useState(false);
 
-  return(
-    <dev>
-      <IconButton aria-label="delete" size="small"
-      onClick={() => setOpen(!open)}
-      aria-controls="example-collapse-text"
-      aria-expanded={open}
-      >
-        <ArrowDownwardIcon fontSize="inherit" />
-      </IconButton>
+//商品一覧コンポーネント
+const useStyles = makeStyles(theme => ({
+  card: {
+    width: "14rem",
+    marginBottom: 15
+  },
+  cardgrid: {
+    textAlign: "center",
+    margin: 30
+  }
+}));
 
-      <Collapse in={open}>
-        <div id="example-collapse-text">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-          labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
-      </Collapse>
-    </dev>
+function LatestPosts() {
+  const colors = ['Red','Orange','Yellow','Green','Blue','Violet'];
+  const classes = useStyles();
+
+  const latestpost = colors.map((color,index) =>
+    <div class="grid-item">
+      <Card className={classes.card}>
+        <Card.Img variant="top" src="aaa.svg" />
+        <Card.Body>
+          <Card.Title>{color}</Card.Title>
+          <Card.Text>
+            the card's content.
+          </Card.Text>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
+      </Card>
+    </div>
+  );
+
+  return (
+    <div>
+      <center style={{fontSize:30,marginTop:60,fontWeight:900}}>
+        投稿一覧
+      </center>
+      <div className={classes.cardgrid}>
+      <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
+        {latestpost}
+      </div>
+    </div>
+    </div>
   );
 }
 
@@ -97,7 +120,7 @@ export default function Person_Profile(){
     <div>
       <Sentence/>
       <br/>
-      <Collapse_button/>
+      <LatestPosts/>
     </div>
   );
 }

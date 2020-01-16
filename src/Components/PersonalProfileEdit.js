@@ -1,11 +1,13 @@
 import React from 'react';
-import {Row,Col} from 'react-bootstrap'; 
+import {Row,Col,Card} from 'react-bootstrap'; 
 import {Button,TextField} from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import {MuiPickersUtilsProvider,KeyboardDatePicker} from '@material-ui/pickers';
 import Grid from '@material-ui/core/Grid';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import Form from 'react-bootstrap/Form'
 
 //金額コンポーネント
 function NumberFormatCustom(props) {
@@ -34,7 +36,8 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-function Sentence_Edit(){
+//詳細コンポーネント
+function SentenceEdit(){
   const [values, setValues] = React.useState({
     textmask: '(1  )    -    ',
     numberformat: '1320',
@@ -46,7 +49,7 @@ function Sentence_Edit(){
     });
   };
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date( ));
   const handleDateChange = date => {
     setSelectedDate(date);
   };
@@ -125,19 +128,65 @@ function Sentence_Edit(){
         </Col>
         <Col md={2}>
           <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
-          <Col md={2} style={{fontSize:20}}>
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-          </Col>
         </Col>
+          <Form.Control as="textarea" rows="10" />
       </Row>
     </dev>
   );
 }
 
-export default function Personal_Profile_Edit(){
+
+//商品一覧コンポーネント
+const useStyles = makeStyles(theme => ({
+  card: {
+    width: "14rem",
+    marginBottom: 15
+  },
+  cardgrid: {
+    textAlign: "center",
+    margin: 30
+  }
+}));
+
+function LatestPosts() {
+  const colors = ['Red','Orange','Yellow','Green','Blue','Violet'];
+  const classes = useStyles();
+
+  const latestpost = colors.map((color,index) =>
+    <div class="grid-item">
+      <Card className={classes.card}>
+        <Card.Img variant="top" src="aaa.svg" />
+        <Card.Body>
+          <Card.Title>{color}</Card.Title>
+          <Card.Text>
+            the card's content.
+          </Card.Text>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
+      </Card>
+    </div>
+  );
+
+  return (
+    <div>
+      <center style={{fontSize:30,marginTop:60,fontWeight:900}}>
+        投稿一覧
+      </center>
+      <div className={classes.cardgrid}>
+      <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
+        {latestpost}
+      </div>
+    </div>
+    </div>
+  );
+}
+
+//defaultコンポーネント
+export default function PersonalProfileEdit(){
     return(
         <dev>
-            <Sentence_Edit/>
+            <SentenceEdit/>
+            <LatestPosts/>
         </dev>
     );
 }

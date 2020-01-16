@@ -1,14 +1,14 @@
 import React from 'react';
 import Original_Navbar from './Components/Original_Navbar';
-import Person_Profile_Edit from './Components/Personal_Profile_Edit';
-import Person_Profile from './Components/Personal_Profile';
+import PersonProfile from './Components/PersonalProfile';
+import PersonProfileEdit from './Components/PersonalProfileEdit';
 
 
 function App() {
   return (
     <div className="App">
       <Original_Navbar />
-      <Person_Profile_Edit />
+      <PersonProfileEdit />
     </div>
   );
 }
