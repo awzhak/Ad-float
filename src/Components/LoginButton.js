@@ -8,7 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   btn: {
-    minWidth: '30px'
+    minWidth: '30px',
+    margin: '4px'
   }
 }))
 function LoginButton() {

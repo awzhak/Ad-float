@@ -3,15 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginButton from './LoginButton';
 
 
-import { Overlay, ButtonToolbar, Popover, Card, ListGroup } from "react-bootstrap";
+import { Overlay, ButtonToolbar, Popover, Card, ListGroup, Button } from "react-bootstrap";
 
 import { Avatar, IconButton } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles(theme => ({
+  btn: {
+    minWidth: '30px',
+    margin: '4px'
+  }
+}))
 
 function UserIcon() {
   const [show, setShow] = useState(false);
   const ref = useRef(null);
+  
+  const classes = useStyles();
 
   const handleClick = (event) => {
     setShow(!show);
@@ -25,9 +34,7 @@ function UserIcon() {
   const Icon = (
     <>
       { iconurl ? (
-          <Avatar 
-            src={iconurl}
-          />
+          <Avatar src={iconurl} />
         ):(
           <AccountCircle />
         )
@@ -36,7 +43,6 @@ function UserIcon() {
   );
 
   return(
-
     <div className="Mail-Notice">
       <ButtonToolbar ref={ref}>
         <IconButton onClick={handleClick} color="inherit">
@@ -56,9 +62,10 @@ function UserIcon() {
             <Popover.Title as="h3" className="font-black">sssss</Popover.Title>
             <Popover.Content>
               <Card style={{ width: '14rem' }}>
-                <ListGroup variant="flush">
-                  <LoginButton />
-                </ListGroup>
+                { iconurl ? (
+                  <Button className={classes.btn} href="/mypage">マイページへ</Button>
+                ):(null)}
+                <LoginButton />
               </Card>
             </Popover.Content>
           </Popover>
