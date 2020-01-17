@@ -20,7 +20,15 @@ body {
 ol, ul {
   padding-left: 30px;
 }
-/* DM css*/
+/* dropzone css*/
+
+.MuiGrid-item {
+  padding: 32px !important;
+  margin: auto !important;
+  max-width: 100% !important;
+}
+
+
 
 
 /* メールの通知 css*/

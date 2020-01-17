@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grow from '@material-ui/core/Grow';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +24,21 @@ const useStyles = makeStyles(theme => ({
   },
   inline: {
     display: 'inline',
+  },
+  container: {
+    display: 'flex',
+  },
+  paper: {
+    margin: theme.spacing(1),
+  },
+  svg: {
+    width: 100,
+    height: 100,
+  },
+  polygon: {
+    fill: theme.palette.common.white,
+    stroke: theme.palette.divider,
+    strokeWidth: 1,
   },
 }));
 
@@ -45,9 +61,9 @@ export default function Notice() {
   const items = [
     {name: 'わいちゃん', text: 'いいね', kind: 'love'},
     {name: 'なあちゃん', text: 'ライド', kind: 'rank'},
-    {name: 'いいちゃん', text: 'しねぇぇ', kind: 'DM'},
+    {name: 'いいちゃん', text: 'よろしく', kind: 'DM'},
     {name: 'うったんちゃん', text: 'っせえ', kind: 'rank'},
-    {name: 'むっちゃん', text: 'くらえ！おら！', kind: 'DM'},
+    {name: 'むっちゃん', text: 'こちらこそ', kind: 'DM'},
     {name: 'わいちゃん', text: 'いいね', kind: 'love'},
     {name: 'なあちゃん', text: 'ライド', kind: 'rank'},
     {name: 'いいちゃん', text: 'しねぇぇ', kind: 'DM'},
@@ -58,6 +74,7 @@ export default function Notice() {
 
 return (
   <Container maxWidth="xs">
+
   <FormGroup row>
       <FormControlLabel
         control={
@@ -93,11 +110,13 @@ return (
         label="👑"
       />
     </FormGroup>
+
   <List className={classes.root}>
   <Divider component="li" />
       {items.map((item,index) => (
         <div key={index} className="Mail-List">
           {state.checkedA && item.kind === 'love'? 
+          <Grow in={state.checkedA}>
         <div className="Mail-Item">
         <ListItem alignItems="flex-start">
         <ListItemAvatar>
@@ -121,9 +140,12 @@ return (
         />
       </ListItem>
       <Divider component="li" />
-      </div> :
+      </div></Grow> :
+
+
         state.checkedB && item.kind === 'DM' ?
         <div className="Mail-Item">
+          <Grow in={state.checkedB}>
         <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" />
@@ -145,10 +167,14 @@ return (
           }
         />
       </ListItem>
+      </Grow>
       <Divider component="li" />
       </div> :
+
+      
         state.checkedC && item.kind === 'rank' ?
         <div className="Mail-Item">
+          <Grow in={state.checkedC}>
         <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" />
@@ -170,11 +196,12 @@ return (
           }
         />
       </ListItem>
+      </Grow>
       <Divider component="li" />
       </div> : ''}
       </div>
       ))}
-      {!state.checkedA && !state.checkedB && !state.checkedC ? '通知はありません' : ''}
+      {!state.checkedA && !state.checkedB && !state.checkedC || items == '' ? '通知はありません' : ''}
   </List>
   </Container>
   );

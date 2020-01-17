@@ -4,12 +4,13 @@ import Footer from './Componets/Footer';
 import Notice from './Components/Notice';
 import Dm from './Components/Dm';
 import List from './Components/List';
+import NewPost from './Components/Newpost'
 
 function App() {
   return (
     <div className="App">
       <Original_Navbar />
-      <Dm />
+      <NewPost />
     </div>
   );
 }
