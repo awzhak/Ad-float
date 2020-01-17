@@ -137,7 +137,7 @@ function SentenceEdit(){
 
 
 //defaultコンポーネント
-export default function (){
+export default function CompanyPost(){
     return(
         <dev>
             <SentenceEdit/>

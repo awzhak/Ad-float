@@ -60,7 +60,7 @@ function Sentence(){
           <Col md={2}>
             <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
             <Col md={2} style={{fontSize:20}}>
-              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </Col>
           </Col>
         </Row>
@@ -115,7 +115,7 @@ function LatestPosts() {
 }
 
 //プロフィールメインのコンポーネント
-export default function Person_Profile(){
+export default function PersonProfile(){
   return(
     <div>
       <Sentence/>

@@ -1,13 +1,13 @@
 import React from 'react';
 import Original_Navbar from './Components/Original_Navbar';
-import CompanyPost from './Components/CompanyPost';
+import ArtDetails from './Components/ArtDetails';
 
 
 function App() {
   return (
     <div className="App">
       <Original_Navbar />
-      <CompanyPost />
+      <ArtDetails />
     </div>
   );
 }
