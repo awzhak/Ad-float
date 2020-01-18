@@ -8,8 +8,12 @@ import Original_Navbar from './Components/Original_Navbar';
 import Footer from './Components/Footer';
 import AdCard from './Components/AdCard';
 import Home from './Pages/Home';
-import UserMypage from './Pages/UserMypage';
+import UserPage from './Pages/UserPage';
 import EditProfile from './Pages/EditProfile';
+
+import genid from './modules/GenUniqueid';
+import { Button } from 'react-bootstrap'
+
 
 
 function App() {
@@ -24,6 +28,10 @@ function App() {
       }
     })
   });
+
+  const idgen = () => {
+    genid();
+  }
   
   return (
     <div className="App">
@@ -31,12 +39,12 @@ function App() {
         <Original_Navbar />
           <Switch>
             <Route path='/' exact component={Home}/>
-            <Route path='/mypage' exact component={UserMypage} />
-            <Route path='/editprofile' component={EditProfile} />
-            <Route path='/adcard' component={AdCard} />
+            <Route path='/user' exact component={UserPage} />
+            <Route path='/editprofile' exact component={EditProfile} />
+            <Route path='/adcard' exact component={AdCard} />
           </Switch>
       </BrowserRouter>
-      <Footer></Footer>
+      <Footer/>
     </div>
   );
 }

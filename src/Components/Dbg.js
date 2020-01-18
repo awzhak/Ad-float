@@ -6,7 +6,7 @@ export default function Dbg() {
     <>
       <ui>
         <li><Link to='/'>home</Link></li>
-        <li><Link to='/mypage'>mypage</Link></li>
+        <li><Link to='/user'>mypage</Link></li>
         <li><Link to='/editprofile'>editprofile</Link></li>
         <li><Link to='/adcard'>adcard</Link></li>
       </ui>

@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function UserMypage() {
+function UserPage() {
   const classes = useStyles();
 
   const colors = [ 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink' ]
@@ -28,4 +28,4 @@ function UserMypage() {
   );
 }
 
-export default UserMypage;
+export default UserPage;

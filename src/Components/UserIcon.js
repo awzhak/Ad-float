@@ -63,7 +63,7 @@ function UserIcon() {
             <Popover.Content>
               <Card style={{ width: '14rem' }}>
                 { iconurl ? (
-                  <Button className={classes.btn} href="/mypage">マイページ</Button>
+                  <Button className={classes.btn} href="/user">マイページ</Button>
                 ):(null)}
                 <LoginButton />
               </Card>
