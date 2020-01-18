@@ -1,23 +1,32 @@
-import firebase from 'firebase/app';
 import { db } from './../index'
 
+// 新規Userかを判定し、新規ならUniqueなidを発行するやつ
 
-export default function GenUniqueid(uid){
-  const allid = isnewreg();
-  if (allid == -1){
-    const lastuid = allid[allid.length];
-    console.log(lastuid)
-  }
-}
+let lastid = null;
 
-function isnewreg(){
-  let ref = null;
+export default function IsNewRege(uid){
   try {
-    const userRef = db.collection('users');
+    console.log("開始1")
+    console.log(uid)
+    const userRef = db.collection("users").orderBy("userId", "asc");
     userRef.get().then(snapshot => {
-      snapshot.forEach(doc => {
-        return doc.id;
+    console.log("開始2")
+    snapshot.forEach(doc => {
+        lastid = doc.get('userId')
+        if( uid === doc.id ){
+          uid = 0;
+        }
       })
+      if ( uid !== 0 ) {
+        try {
+          const userRef = db.collection('users').doc(uid)
+          userRef.set({
+            userId: lastid + 1,
+          })
+        } catch(err) {
+          console.log(`Error: ${JSON.stringify(err)}`)
+        }
+      }
     })
   } catch(err) {
     console.log(`Error: ${JSON.stringify(err)}`)

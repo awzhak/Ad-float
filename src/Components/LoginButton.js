@@ -6,6 +6,8 @@ import 'firebase/auth';
 import { setName, clearName, setMail, clearMail, setIcon, clearIcon } from "./../stores/user";
 import { makeStyles } from '@material-ui/core/styles';
 
+import GenId from './../modules/GenUniqueid';
+
 const useStyles = makeStyles(theme => ({
   btn: {
     minWidth: '30px',
@@ -14,6 +16,7 @@ const useStyles = makeStyles(theme => ({
 }))
 function LoginButton() {
   const [ isauth, setIsauth ] = useState(false);
+
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -35,6 +38,7 @@ function LoginButton() {
       const provider = new firebase.auth.GoogleAuthProvider();
 
       firebase.auth().signInWithPopup(provider).then(function(result) {
+        GenId(result.user.uid)
         const user = result.additionalUserInfo.profile;
         console.log(user)
 
@@ -42,7 +46,7 @@ function LoginButton() {
         dispatch(setName(user.name))
         dispatch(setMail(user.email))
         dispatch(setIcon(user.photoURL))
-  
+        
       }).catch(function(error) {
         console.log(error)
         console.log(error.message)

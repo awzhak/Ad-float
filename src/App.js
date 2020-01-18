@@ -11,12 +11,13 @@ import Home from './Pages/Home';
 import UserPage from './Pages/UserPage';
 import EditProfile from './Pages/EditProfile';
 
-import genid from './modules/GenUniqueid';
 import { Button } from 'react-bootstrap'
 
 
 
 function App() {
+
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,13 +30,11 @@ function App() {
     })
   });
 
-  const idgen = () => {
-    genid();
-  }
   
   return (
     <div className="App">
       <BrowserRouter>
+      <Dbg />
         <Original_Navbar />
           <Switch>
             <Route path='/' exact component={Home}/>
