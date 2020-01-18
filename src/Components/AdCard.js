@@ -53,7 +53,8 @@ function AdCard(props) {
     元の案件
     投稿日時
   */
-  return(
+  const cards = (
+    <div class="grid-item">
     <Card style={{ width: '20rem' }}>
       <img className={classes.cardimg} src={ad}/>
       <div className={classes.cardbody}>
@@ -78,6 +79,12 @@ function AdCard(props) {
         </div>
       </Card.Footer>
     </Card>
+    </div>
+  );
+  return(
+    <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
+      {cards}
+    </div>
   );
 }
 
