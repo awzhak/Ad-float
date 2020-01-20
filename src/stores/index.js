@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 
-import { name, mail, icon } from "./user";
+import { uid, name, mail, icon } from "./user";
 
 const reducer = combineReducers({
+  uid: uid.reducer,
   name: name.reducer,
   mail: mail.reducer,
   icon: icon.reducer

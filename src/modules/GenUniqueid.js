@@ -6,11 +6,8 @@ let lastid = null;
 
 export default function IsNewRege(uid){
   try {
-    console.log("開始1")
-    console.log(uid)
     const userRef = db.collection("users").orderBy("userId", "asc");
     userRef.get().then(snapshot => {
-    console.log("開始2")
     snapshot.forEach(doc => {
         lastid = doc.get('userId')
         if( uid === doc.id ){

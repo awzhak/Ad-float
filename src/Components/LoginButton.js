@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from 'react-bootstrap/Button'
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import { setName, clearName, setMail, clearMail, setIcon, clearIcon } from "./../stores/user";
+import { setUid, clearUid, setName, clearName, setMail, clearMail, setIcon, clearIcon } from "./../stores/user";
 import { makeStyles } from '@material-ui/core/styles';
 
 import GenId from './../modules/GenUniqueid';
@@ -39,9 +39,8 @@ function LoginButton() {
 
       firebase.auth().signInWithPopup(provider).then(function(result) {
         GenId(result.user.uid)
+        dispatch(setUid(result.user.uid))
         const user = result.additionalUserInfo.profile;
-        console.log(user)
-
         setIsauth(true)
         dispatch(setName(user.name))
         dispatch(setMail(user.email))
@@ -62,6 +61,7 @@ function LoginButton() {
   function Logout() {
     firebase.auth().signOut().then(function() {
       setIsauth(false)
+      dispatch(clearUid())
       dispatch(clearName())
       dispatch(clearMail())
       dispatch(clearIcon())
