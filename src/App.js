@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import firebase from 'firebase/app';
-import { setName, setMail, setIcon } from "./stores/user";
+import { setUid, setName, setMail, setIcon } from "./stores/user";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dbg from './Components/Dbg';
 import Original_Navbar from './Components/Original_Navbar';
@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        dispatch(setUid(user.uid))
         dispatch(setName(user.name))
         dispatch(setMail(user.email))
         dispatch(setIcon(user.photoURL))
