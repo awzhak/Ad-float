@@ -9,7 +9,7 @@ import Footer from './Components/Footer';
 import AdCard from './Components/AdCard';
 import Home from './Pages/Home';
 import UserPage from './Pages/UserPage';
-import EditProfile from './Pages/EditProfile';
+import EditProfileDetails from './Pages/EditProfileDetails';
 
 import { Button } from 'react-bootstrap'
 
@@ -38,8 +38,8 @@ function App() {
         <Original_Navbar />
           <Switch>
             <Route path='/' exact component={Home}/>
-            <Route path='/user' exact component={UserPage} />
-            <Route path='/editprofile' exact component={EditProfile} />
+            <Route path='/user/:id' component={UserPage} />
+            <Route path='/editprofile' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />
           </Switch>
       </BrowserRouter>

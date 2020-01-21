@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import { Avatar, Chip, Toolbar, Typography, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
-
-import { db } from './../index'
-import { sleepy } from 'react-icons-kit/icomoon';
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,55 +32,20 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function ProfileDetails(props) {
+function EditProfileDetails() {
   const classes = useStyles();
-
-  const [ propid, setPropid ] = useState(props.id);
-  const [ company, setCompany ] = useState();
-  const [ name, setName ] = useState();
-  const [ id, setId ] = useState();
-  const [ icon, setIcon ] = useState();
-  const [ job, setJob ] = useState();
-  const [ skills, setSkills ] = useState(['']);
-  const [ like, setLike ] = useState();
-  const [ details, setDetails ] = useState();
-  const [ posts, setPosts ] = useState();
-  
-  useEffect(() => {
-    try {
-      const UserRef = db.collection('users').where('userId', '==', parseInt(propid))
-      UserRef.get().then(function(snapshot){
-        snapshot.forEach(function(doc){
-          const user = doc.data();
-          setCompany(user.company)
-          setName(user.name)
-          setId(user.userId)
-          setIcon(user.icon)
-          setJob(user.job)
-          setLike(user.like)
-          setDetails(user.introduction)
-          setPosts(user.posts)
-        }
-        )})
-    } catch(err) {
-      console.log(`Error: ${JSON.stringify(err)}`)
-    }
-  },[propid]);
-
-  const putSkills = skills.map((skill, index) => 
-    <Chip label={skill} variant="outlined" />
-  )
-
 
   return (
     <div className={classes.root}>
       <center>
-        <Avatar className={classes.orange} src={icon}>M</Avatar>
+        <Avatar className={classes.orange}>M</Avatar>
       </center>
       <TableContainer component={Paper}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" id="tableTitle">
-          <center>{name}</center>
+          <center>
+            169z87mn
+          </center>
           </Typography>
         </Toolbar>
         <Table className={classes.table}>
@@ -92,29 +53,35 @@ function ProfileDetails(props) {
 
           <TableRow>
             <TableCell className={classes.thcell} align="center">id</TableCell>
-            <TableCell className={classes.cell} align="right">{id}</TableCell>
+            <TableCell className={classes.cell} align="right">169z87mn</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell className={classes.thcell} align="center">職業</TableCell>
-            <TableCell className={classes.cell} align="right">{job}</TableCell>
+            <TableCell className={classes.cell} align="right">学生</TableCell>
           </TableRow>
           
           <TableRow>
             <TableCell className={classes.thcell} align="center">Skill</TableCell>
             <TableCell className={classes.cell} align="right">
-            {putSkills}
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
+              <br/>
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
+              <Chip label="aaa" variant="outlined" />
             </TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell className={classes.thcell} align="center">いいね</TableCell>
-            <TableCell className={classes.cell} align="right">{like}</TableCell>
+            <TableCell className={classes.cell} align="right">99130</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell className={classes.thcell} align="center">詳細</TableCell>
-            <TableCell className={classes.cell} align="right">{details}</TableCell>
+            <TableCell className={classes.cell} align="right">わたしは大崎甘奈</TableCell>
           </TableRow>
 
           <TableRow>
@@ -131,4 +98,4 @@ function ProfileDetails(props) {
   );
 }
 
-export default ProfileDetails;
+export default EditProfileDetails;

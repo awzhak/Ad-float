@@ -8,7 +8,7 @@ export default function IsNewRege(uid){
   try {
     const userRef = db.collection("users").orderBy("userId", "asc");
     userRef.get().then(snapshot => {
-    snapshot.forEach(doc => {
+      snapshot.forEach(doc => {
         lastid = doc.get('userId')
         if( uid === doc.id ){
           uid = 0;

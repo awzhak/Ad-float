@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import './index.css';
 import App from './App';
-import EditProfile from './Pages/EditProfile'
 
 import { Provider } from "react-redux";
 import store from "./stores/";

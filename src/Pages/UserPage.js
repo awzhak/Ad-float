@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function UserPage() {
+function UserPage(props) {
   const classes = useStyles();
 
   const colors = [ 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink' ]
@@ -18,7 +18,7 @@ function UserPage() {
   return (
     <div className={classes.root}>
       <center>
-        <ProfileDetails />
+        <ProfileDetails id={props.match.params.id}/>
         <Typography variant="h3" gutterBottom color='primary'>
           最新の投稿
         </Typography>
