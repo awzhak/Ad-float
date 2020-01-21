@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { useEffect , useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import logo from './132-1200x899.png'
+// firebase
+import {db} from '../firebase/index'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -43,13 +37,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RecipeReviewCard() {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+export default function RecipeReviewCard() {
+  // formId 受け取り
+  const formId = 'Ic9HRa5Dy6zpDH0btH0s';
+
+  const classes = useStyles();
+  // 募集情報
+  const [Item, setItem] = useState({})
+  // 日付
+  const[date, setDate] = useState({})
+
+
+  useEffect(() => {
+    const formRef = db.collection('form').doc(formId);
+    console.log(formRef)
+    formRef.get().then(docsnapshot => {
+      console.log(docsnapshot.data().time.toDate())
+      setItem(docsnapshot.data())
+      setDate(docsnapshot.data().time.toDate())
+    })
+  },[])
+
 
   return (
     <Card className={classes.card}>
@@ -64,8 +73,8 @@ export default function RecipeReviewCard() {
         //     <MoreVertIcon />
         //   </IconButton>
         // }
-        title="募集タイトル"
-        subheader="2020/01/02 ~ 期間"
+        title={Item.title}
+        subheader={date}
       />
       <CardMedia
         className={classes.media}
@@ -74,8 +83,7 @@ export default function RecipeReviewCard() {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          説明文 説明文
-          説明文 説明文
+          {Item.description}
         </Typography>
       </CardContent>
       <CardHeader
