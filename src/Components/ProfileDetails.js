@@ -61,6 +61,7 @@ function ProfileDetails(props) {
           setId(user.userId)
           setIcon(user.icon)
           setJob(user.job)
+          setSkills(user.skills)
           setLike(user.like)
           setDetails(user.introduction)
           setPosts(user.posts)
