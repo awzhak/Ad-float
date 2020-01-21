@@ -1,5 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const id = createSlice({
+  name: "id",
+  initialState: {
+    id: null
+  },
+  reducers: {
+    setId: (state, action) => {
+      return Object.assign({}, state, { id: action.payload })
+    },
+    clearId: state => {
+      return Object.assign({}, state, { id: "" })
+    }
+  }
+});
+
 export const uid = createSlice({
   name: "uid",
   initialState: {
@@ -60,6 +75,7 @@ export const icon = createSlice({
   }
 });
 
+export const { setId, clearId } = id.actions;
 export const { setUid, clearUid } = uid.actions;
 export const { setName, clearName } = name.actions;
 export const { setMail, clearMail } = mail.actions;
