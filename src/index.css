@@ -11,3 +11,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/*footerのcss*/
+.footer{
+  max-height: 200px;
+  width: 100%;
+  background-color: #EEEEEE;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+}
+
+.aaaa {
+  background-color: #EEEEEE;
+  margin: 20px;
+  padding-top: 10px;
+  color: #00000f;
+}
+
+.aae {
+  padding-top: 3px;
+}
+
+.aaai {
+  margin-bottom: 2px;
+  text-align: center;
+  font-size: 13px;
+  color: #000003;
+}
+
+/*案件詳細画面のcss*/
+.sen{
+  border-left:solid 5px #11FFFF;
+  padding:5px 0px 5px 20px;
+  margin-bottom:20px;
+  background-color:#F5F5F5;
+}
