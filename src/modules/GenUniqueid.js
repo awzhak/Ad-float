@@ -19,6 +19,7 @@ export default function IsNewRege(uid){
           const userRef = db.collection('users').doc(uid)
           userRef.set({
             userId: lastid + 1,
+            skills: ['']
           })
         } catch(err) {
           console.log(`Error: ${JSON.stringify(err)}`)
