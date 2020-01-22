@@ -12,7 +12,7 @@ import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone';
 
 import firebase from 'firebase/app';
 import {db} from '../firebase/index';
-import {storage} from '../firebase/index'
+import {storage} from '../firebase/index';
 
 
 //金額コンポーネント
@@ -49,6 +49,7 @@ function SentenceEdit(){
   const [time, setTime] = useState('')
   const [money, setMoney] = useState('')
   const [desc, setDesc] = useState('')
+  const [title,setTitle] = useState('')
   const storageRef = storage.ref()
 
   const handleCompany = (event) => {
@@ -66,6 +67,10 @@ function SentenceEdit(){
     setDesc(event.target.value)
   }
 
+  const handleTitle = (event) => {
+    setTitle(event.target.value)
+  }
+
   const handleClick = (event) => {
     const uploadTask = storageRef.child(`${file[0].name}`).put(file[0])
     uploadTask.on(
@@ -78,7 +83,6 @@ function SentenceEdit(){
       },
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-          console.log('File available at', downloadURL)
           const adRef = db.collection('form').add({
             company: company,       // 企業名
             limit: selectedDate,          //期限
@@ -87,6 +91,7 @@ function SentenceEdit(){
             userId: 'userId',   // ユーザーID
             description: desc,  // 説明
             image: downloadURL, //イメージＵＲＬ
+            title: title,        //タイトル
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           })
         })
@@ -136,20 +141,31 @@ function SentenceEdit(){
           </Button>
         </Col>
         <Col xs={12} md={4}>
-        <DropzoneArea
-                dropzoneText="Upload File"
-                filesLimit={1}
-                showPreviews={false}
-                showPreviewsInDropzone={true}
-                showFileNamesInPreview={true}
-                showFileNames={true}
-                onChange={file => (setFile(file))}
-            />
+          <DropzoneArea
+            dropzoneText="Upload File"
+            filesLimit={1}
+            showPreviews={false}
+            showPreviewsInDropzone={true}
+            showFileNamesInPreview={true}
+            showFileNames={true}
+            onChange={file => (setFile(file))}
+          />
         </Col>
         <Col xs={6} md={7}
           style={{marginTop:10}}
         >
           <Row>
+            <Col md={4}>
+              <p className="sen" style={Line_Left}>タイトル</p>
+            </Col>
+            <Col md={7} style={Line_Right}>
+              <TextField 
+              id="standard-basic" 
+              label="タイトル名" 
+              onChange={(e) => handleTitle(e)}
+              value={title}
+              />
+            </Col>
             <Col md={4}>
               <p className="sen" style={Line_Left}>募集企業</p>
             </Col>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect , useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -7,12 +7,17 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Art from '../images/test.jpg';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import IconButton from '@material-ui/core/IconButton';
+import CardActions from '@material-ui/core/CardActions';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
+import {db} from '../firebase/index';
+import moment from 'moment'
 
 const useStyles = makeStyles(theme => ({
-  style: {
-    margin:30
-  },
   card: {
+    margin: '30px auto',
     maxWidth: 800,
   },
   media: {
@@ -32,9 +37,46 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ArtDetails(){
+  // アイコンフラグ
+  const [flag, setFlag] = useState(false)
+  const [item,setItem] = useState({})
+  const [user,setUser] = useState({})
+  const [date,setDate] = useState({})
+  const adId = '28rb8b1fcdPytQZw8ciB';
+  const userId = 'Wisga4vfNOCkXjGjQNhe';
+
+  const handleClickAdd = (event) => {
+    const adRef = db.collection('liked').add({
+      adId: adId,
+      userId: userId
+    })
+  }
+
+  const handleClickDel = (event) => {
+    const adRef = db.collection('liked').add({
+      adId: adId,
+      userId: userId
+    })
+  }
+
+  useEffect(() => {
+    // ad接続
+    const adRef = db.collection('ad').doc(adId);
+    adRef.get().then(docsnapshot => {
+      setItem(docsnapshot.data())
+      setDate(moment(docsnapshot.data().timestamp.toDate()).format('YYYY/MM/DD'))
+      const userRef = db.collection('users').doc(docsnapshot.data().userId);
+      userRef.get().then(snapshot => {
+        setUser(snapshot.data())
+      })
+    })
+    //liked接続
+    const adRef = db.collection('liked').doc();
+
+  },[])
+  
   const classes = useStyles();
   return(
-    <center className={classes.style}>
       <Card className={classes.card}>
         <CardHeader
           avatar={
@@ -42,26 +84,34 @@ export default function ArtDetails(){
               G
             </Avatar>
           }
-          title="ゴッホ・リョウジ"
-          subheader="@birthday0227"
+          title={item.title}
+          subheader={`投稿日${date}`}
         />
         <CardMedia
           className={classes.media}
-          image={Art}
+          image={item.url}
           title="Paella dish"
         />
         <CardContent>
           <p align="left" style={{fontSize:25}}>説明</p>
           <Typography variant="body2" color="textSecondary" component="p">
-          Great things are not done by impulse, but by a series of small things brought together.
-          Your life would be very empty if you had nothing to regret.
-          I envy the Japanese the extreme clarity in whatever they do.
-          I am always doing what I can’t do yet, in order to learn how to do it.
-          Great things are done by a series of small things brought together.
-          Do not quench your inspiration and your imagination; do not become the slave of your model.
+            {item.description}
           </Typography>
         </CardContent>
+
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites" className={classes.expand}>
+            {flag ?
+              <FavoriteBorderIcon fontSize="large"
+                 onClick={(e) => handleClickAdd(e)}
+              />:
+              <FavoriteIcon fontSize="large"
+                color="secondary"
+                onClick={(e) => handleClickDel(e)}
+              />
+            }
+          </IconButton>
+        </CardActions>
       </Card>
-    </center>
   );
 }
