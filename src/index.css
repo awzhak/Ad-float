@@ -47,3 +47,10 @@ code {
   margin-bottom:20px;
   background-color:#F5F5F5;
 }
+
+.MuiGrid-item{
+  padding: 32px !important;
+  margin: auto !important;
+  max-width: 100% !important;
+  flex-basis: 100% !important;
+}

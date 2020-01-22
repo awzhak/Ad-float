@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Row,Col,Card} from 'react-bootstrap'; 
 import {Button,TextField} from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
@@ -7,7 +7,13 @@ import Grid from '@material-ui/core/Grid';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone';
+
+import firebase from 'firebase/app';
+import {db} from '../firebase/index';
+import {storage} from '../firebase/index'
+
 
 //金額コンポーネント
 function NumberFormatCustom(props) {
@@ -38,9 +44,59 @@ NumberFormatCustom.propTypes = {
 
 //詳細コンポーネント
 function SentenceEdit(){
+  const [file, setFile] = useState(null)
+  const [company, setCompany] = useState('')
+  const [time, setTime] = useState('')
+  const [money, setMoney] = useState('')
+  const [desc, setDesc] = useState('')
+  const storageRef = storage.ref()
+
+  const handleCompany = (event) => {
+    setCompany(event.target.value)
+  }
+
+  const handleTime = (event) => {
+    setTime(event.target.value)
+  }
+
+  const handleMoney = (event) => {
+    setMoney(event.target.value)
+  }
+  const handleDesc = (event) => {
+    setDesc(event.target.value)
+  }
+
+  const handleClick = (event) => {
+    const uploadTask = storageRef.child(`${file[0].name}`).put(file[0])
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        console.log('snapshot', snapshot)
+      },
+      (error) => {
+        console.log('err', error)
+      },
+      () => {
+        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+          console.log('File available at', downloadURL)
+          const adRef = db.collection('form').add({
+            company: company,       // 企業名
+            limit: selectedDate,          //期限
+            money: values.numberformat,         //金額
+            postcount: 0,        //ポストカウント
+            userId: 'userId',   // ユーザーID
+            description: desc,  // 説明
+            image: downloadURL, //イメージＵＲＬ
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+        })
+      }
+    )
+  };
+
   const [values, setValues] = React.useState({
     textmask: '(1  )    -    ',
-    numberformat: '1320',
+    numberformat: '',
   });
   const handleChange = name => event => {
     setValues({
@@ -49,7 +105,7 @@ function SentenceEdit(){
     });
   };
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date( ));
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const handleDateChange = date => {
     setSelectedDate(date);
   };
@@ -72,12 +128,23 @@ function SentenceEdit(){
          }}
       >
         <Col md={{ span: 4, offset: 11 }}>
-          <Button variant="outlined" color="primary">
+          <Button 
+          variant="outlined" 
+          color="primary"
+          onClick={(e) => handleClick(e)}>
             保存
           </Button>
         </Col>
         <Col xs={12} md={4}>
-          xs=12 md=5
+        <DropzoneArea
+                dropzoneText="Upload File"
+                filesLimit={1}
+                showPreviews={false}
+                showPreviewsInDropzone={true}
+                showFileNamesInPreview={true}
+                showFileNames={true}
+                onChange={file => (setFile(file))}
+            />
         </Col>
         <Col xs={6} md={7}
           style={{marginTop:10}}
@@ -87,7 +154,12 @@ function SentenceEdit(){
               <p className="sen" style={Line_Left}>募集企業</p>
             </Col>
             <Col md={7} style={Line_Right}>
-              <TextField id="standard-basic" label="企業名" />
+              <TextField 
+              id="standard-basic" 
+              label="企業名" 
+              onChange={(e) => handleCompany(e)}
+              value={company}
+              />
             </Col>
             <Col md={4}>
               <p className="sen" style={Line_Left}>募集期間</p>
@@ -98,7 +170,7 @@ function SentenceEdit(){
                   <KeyboardDatePicker
                   disableToolbar
                   variant="inline"
-                  format="yyyy/mm/dd"
+                  format="yyyy/MM/dd"
                   margin="normal"
                   id="date-picker-inline"
                   value={selectedDate}
@@ -129,7 +201,12 @@ function SentenceEdit(){
         <Col md={2}>
           <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
         </Col>
-          <Form.Control as="textarea" rows="10" />
+          <Form.Control
+          as="textarea" 
+          rows="10" 
+          onChange={(e) => handleDesc(e)}
+          value={desc}
+          />
       </Row>
     </dev>
   );
