@@ -35,12 +35,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Dbg />
         <Original_Navbar />
           <Switch>
             <Route path='/' exact component={Home}/>
             <Route path='/user/:id' component={UserPage} />
-            <Route path='/editprofile' exact component={EditProfileDetails} />
+            <Route path='/user/:id/edit' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />
           </Switch>
       </BrowserRouter>

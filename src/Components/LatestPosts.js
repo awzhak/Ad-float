@@ -1,4 +1,12 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-duplicate-case */
+/* eslint-disable default-case */
+import React, { useState, useEffect } from 'react';
+import { useSelector } from "react-redux";
+import { db } from './../index'
+
+import AdCard from './AdCard';
+
 import { Card, Button } from 'react-bootstrap'
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,21 +23,35 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function LatestPosts(props) {
+  const [posts, setPosts] = useState([]);
+
+
+  useEffect(() => {
+    switch(props.page) {
+      case "home":
+        const dbposts = [];
+        const adRef = db.collection('awefaf').orderBy("date", "desc").get().then(snapshot => {
+          snapshot.forEach(doc => {
+            dbposts.push(doc.data())
+            console.log(doc.data())
+          })
+          setPosts(dbposts);
+        })
+        break;
+      case "posts":
+        break;
+      case "projects":
+        break;
+      case "ranking":
+        break;
+    }
+  },[props.page])
+
+
   const classes = useStyles();
 
-  const latestpost = props.colors.map((color,index) =>
-    <div class="grid-item">
-      <Card className={classes.card}>
-        <Card.Img variant="top" src="aaa.svg" />
-        <Card.Body>
-          <Card.Title>{color}</Card.Title>
-          <Card.Text>
-            the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
-    </div>
+  const latestpost = posts.map((post) =>
+    <AdCard {...post}/>
   );
 
   return (

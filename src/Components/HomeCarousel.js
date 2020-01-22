@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Carousel, Card, Button } from 'react-bootstrap'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,9 +24,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function HomeCarousel() {
+function HomeCarousel(props) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(null);
+
+  useEffect(() => {
+    switch(props.page) {
+      case "home":
+        break;
+      case "posts":
+        break;
+      case "projects":
+        break;
+      case "ranking":
+        break;
+    }
+  })
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);

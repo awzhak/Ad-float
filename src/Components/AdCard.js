@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+//ユーザーのid、募集idからそれを取得するコードをuseEffect書く
+//文字数制限
+
 function AdCard(props) {
   const classes = useStyles();
   /*
@@ -56,7 +59,7 @@ function AdCard(props) {
   const cards = (
     <div class="grid-item">
     <Card style={{ width: '20rem' }}>
-      <img className={classes.cardimg} src={ad}/>
+      <img className={classes.cardimg} src={props.thumbnail}/>
       <div className={classes.cardbody}>
         <div>
           <Avatar className={classes.orange}>N</Avatar>
@@ -65,17 +68,16 @@ function AdCard(props) {
           </div>
         </div>
         <h5 className={classes.cardtitle}>
-          aaaaa
+          {props.title}
         </h5 >
         <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of
-          the card's content.
+          {props.description}
         </Card.Text>
       </div>
       <Card.Footer>
-        <small className="text-muted">元の案件～～～～～</small>
+        <small className="text-muted">{props.from}</small>
         <div className={classes.date}>
-          <small className="text-muted">2020/01/22</small>
+          <small className="text-muted">{props.date.seconds}</small>
         </div>
       </Card.Footer>
     </Card>
