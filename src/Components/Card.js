@@ -10,6 +10,7 @@ import { red } from '@material-ui/core/colors';
 import logo from './132-1200x899.png'
 // firebase
 import {db} from '../firebase/index'
+import moment from 'moment'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -41,21 +42,27 @@ const useStyles = makeStyles(theme => ({
 export default function RecipeReviewCard() {
   // formId 受け取り
   const formId = 'Ic9HRa5Dy6zpDH0btH0s';
-
   const classes = useStyles();
   // 募集情報
   const [Item, setItem] = useState({})
+  // 投稿者情報
+  const [user, setUser] = useState({})
   // 日付
-  const[date, setDate] = useState({})
-
+  const[date, setDate] = useState()
 
   useEffect(() => {
+    // 募集情報
     const formRef = db.collection('form').doc(formId);
     console.log(formRef)
     formRef.get().then(docsnapshot => {
-      console.log(docsnapshot.data().time.toDate())
+      // 募集情報セット
       setItem(docsnapshot.data())
-      setDate(docsnapshot.data().time.toDate())
+      setDate(moment(docsnapshot.data().time.toDate()).format('YYYY/MM/DD'))
+      // 募集投稿ユーザー情報
+      const userRef = db.collection('users').doc(docsnapshot.data().userId);
+      userRef.get().then(snapshot => {
+        setUser(snapshot.data())
+      })
     })
   },[])
 
@@ -74,11 +81,11 @@ export default function RecipeReviewCard() {
         //   </IconButton>
         // }
         title={Item.title}
-        subheader={date}
+        subheader={`掲載日:${date}`}
       />
       <CardMedia
         className={classes.media}
-        image={logo}
+        image={Item.image}
         title="Paella dish"
       />
       <CardContent>
@@ -93,7 +100,7 @@ export default function RecipeReviewCard() {
           </Avatar>
         }
         title="投稿者"
-        subheader="ユーザーID"
+        subheader={user.name}
       />
     </Card>
   );
