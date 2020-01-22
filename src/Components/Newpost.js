@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function LayoutTextFields() {
   // formIdの受け取り
-
+  const formId = 'Ic9HRa5Dy6zpDH0btH0s';
   const classes = useStyles();
   // 広告の情報state
   const [file, setFile] = useState(null)
@@ -76,13 +76,19 @@ export default function LayoutTextFields() {
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
           console.log('File available at', downloadURL)
+          // 作品投稿
           const adRef = db.collection('ad').add({
             title: title,       // タイトル
             url: downloadURL,   // 作品URL
             description: desc,  // 説明
-            formId: 'formId',   // 募集ID
+            formId: formId,     // 募集ID
             userId: 'userId',   // ユーザーID
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+          // 投稿数カウント
+          const formRef = db.collection('form').doc(formId)
+          formRef.update({
+            postcount: firebase.firestore.FieldValue.increment(1.0)
           })
           console.log(adRef)  // ドキュメントID
         })

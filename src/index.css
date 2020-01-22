@@ -23,10 +23,15 @@ ol, ul {
 /* dropzone css*/
 
 .MuiGrid-item {
-  padding: 32px !important;
+  padding: 0px !important;
+  padding-top: 32px !important;
   margin: auto !important;
   max-width: 100% !important;
 }
+
+/* .MuiGrid-grid-xs-4 {
+  flex-basis: 100% !important;
+} */
 
 
 

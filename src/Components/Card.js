@@ -1,16 +1,24 @@
 import React, { useEffect , useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import logo from './132-1200x899.png'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 // firebase
 import {db} from '../firebase/index'
 import moment from 'moment'
+
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -72,7 +80,7 @@ export default function RecipeReviewCard() {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            {Item.postcount}
           </Avatar>
         }
         // action={
@@ -93,6 +101,18 @@ export default function RecipeReviewCard() {
           {Item.description}
         </Typography>
       </CardContent>
+
+      <CardActions disableSpacing>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share" className={classes.expand}>
+          <ShareIcon />
+           
+        </IconButton>
+      </CardActions>
+
+
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
