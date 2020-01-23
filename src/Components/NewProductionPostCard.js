@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RecipeReviewCard() {
   // formId 受け取り
-  const formId = 'ElVYSiPJrgq9RkE1tPiM';
+  const formId = 'Ic9HRa5Dy6zpDH0btH0s';
   const classes = useStyles();
   // 募集情報
   const [Item, setItem] = useState({})
