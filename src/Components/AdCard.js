@@ -9,7 +9,11 @@ import { deepOrange } from '@material-ui/core/colors';
 import { Card } from 'react-bootstrap';
 
 const useStyles = makeStyles(theme => ({
-
+  root : {
+    width: '17rem',
+    display: 'inline-block',
+    padding: '5px'
+  },
   cardbody: {
     marginTop: 0,
     margin: 20,
@@ -59,7 +63,8 @@ function AdCard(props) {
     投稿日時
   */
   return(
-    <Card>
+    <div className={classes.root}>
+    <Card class="grid-item">
       <img className={classes.cardimg} src={props.url}/>
       <div className={classes.cardbody}>
         <div>
@@ -82,6 +87,7 @@ function AdCard(props) {
         </div>
       </Card.Footer>
     </Card>
+    </div>
   );
 }
 

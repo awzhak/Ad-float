@@ -13,13 +13,7 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: '17rem',
-    margin: 0,
-  },
   cardgrid: {
-    width: 'auto',
-    textAlign: "center",
     margin: 30,
   }
 }));
@@ -54,14 +48,14 @@ function LatestPosts(props) {
   const classes = useStyles();
 
   const latestposts = posts.map((post) =>
-    <div className={classes.root} class="grid-item">
+    <>
       <AdCard {...post}/>
-    </div>
+    </>
   );
     
   return (
     <div className={classes.cardgrid}>
-      <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
+      <div class="grid" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
         {latestposts}
       </div>
     </div>
