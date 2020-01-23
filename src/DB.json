@@ -1,0 +1,55 @@
+{   
+    "ad":{
+        "自動ID":{
+            "Adref":"広告のドキュメントパス",
+            "userref":"ユーザーのドキュメントパス",
+            "formId":"募集案件ID"
+        },
+        "自動ID1":"..."
+    },
+    "form":{
+        "自動ID":{
+            "formref":"募集案件ドキュメントパス",
+            "userref":"ユーザードキュメントパス"
+        }
+    },
+    "users": {
+        "自動ID": {
+            "company": false,
+            "icon":"アイコンのURL",
+            "introduction":"紹介文",
+            "name":"ユーザーネーム",
+            "userId": "ユーザーID",
+            "favorite":{
+                "0":"広告のID",
+                "1":"広告のID"
+            },
+            "ad": {
+                "自動ID":{
+                    "description": "作品の説明",
+                    "image": "画像のURL",
+                    "time": "タイムスタンプ",
+                    "title": "タイトル",
+                    "formId":"募集案件ID"
+                },
+                "自動ID1":"..."
+            },
+            "form": {
+                "自動ID":{
+                    "description": "案件の説明",
+                    "icon": "アイコンのURL",
+                    "image": "画像のURL",
+                    "title": "タイトル"
+                }
+            },
+            "messages":{
+                "自動ID": {
+                    "body": "メッセージ",
+                    "check": false,
+                    "receiver":"受信者",
+                    "time":"タイムスタンプ"
+                }
+            }
+        }
+    }
+}

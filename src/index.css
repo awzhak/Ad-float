@@ -35,3 +35,74 @@ code {
 .MuiAppBar-positionStatic {
   position: relative !important;
 }
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+/* dropzone css*/
+
+.MuiGrid-item {
+  padding: 0px !important;
+  padding-top: 32px !important;
+  margin: auto !important;
+  max-width: 100% !important;
+}
+
+/* .MuiGrid-grid-xs-4 {
+  flex-basis: 100% !important;
+} */
+
+
+
+
+/* メールの通知 css*/
+
+.popover-body {
+  padding: 0px !important;
+}
+
+.font-black {
+  color: black;
+}
+
+.card-link {
+  margin-left: 0rem !important;
+}
+
+.right {
+  text-align: right;
+  float: right;
+}
+
+/*footerのcss*/
+.footer{
+  max-height: 200px;
+  width: 100%;
+  background-color: #EEEEEE;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+}
+
+.aaaa {
+  background-color: #EEEEEE;
+  margin: 20px;
+  padding-top: 10px;
+  color: #00000f;
+}
+
+.aae {
+  padding-top: 3px;
+}
+
+.aaai {
+  margin-bottom: 2px;
+  text-align: center;
+  font-size: 13px;
+  color: #000003;
+}
