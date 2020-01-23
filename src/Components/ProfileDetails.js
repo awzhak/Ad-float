@@ -5,7 +5,7 @@ import { Avatar, Chip, Toolbar, Typography, Table, TableBody, TableCell, TableCo
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 
-import { db } from './../index'
+import { db } from './../firebase/index'
 import { sleepy } from 'react-icons-kit/icomoon';
 
 

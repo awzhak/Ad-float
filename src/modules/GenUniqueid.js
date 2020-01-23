@@ -1,4 +1,4 @@
-import { db } from './../index'
+import { db } from './../firebase/index'
 
 // 新規Userかを判定し、新規ならUniqueなidを発行するやつ
 

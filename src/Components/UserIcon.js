@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setId } from "./../stores/user";
-import { db } from './../index'
+import { db } from './../firebase/index'
 
 import LoginButton from './LoginButton';
 

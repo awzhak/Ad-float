@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
-import { db } from './../index'
+import { db } from './../firebase/index'
 
 import AdCard from './AdCard';
 
