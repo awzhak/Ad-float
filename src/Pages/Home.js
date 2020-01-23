@@ -85,7 +85,6 @@ function Home() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <HomeCarousel page={"posts"} />
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
             最新の投稿
@@ -95,7 +94,6 @@ function Home() {
       </TabPanel>
 
       <TabPanel value={value} index={2}>
-        <HomeCarousel page={"projects"} />
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
             最新の投稿
@@ -105,7 +103,6 @@ function Home() {
       </TabPanel>
 
       <TabPanel value={value} index={3}>
-        <HomeCarousel page={"ranking"} />
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
             最新の投稿

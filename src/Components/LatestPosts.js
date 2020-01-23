@@ -2,7 +2,8 @@
 /* eslint-disable no-duplicate-case */
 /* eslint-disable default-case */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { db } from './../index'
 
 import AdCard from './AdCard';
@@ -12,17 +13,19 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    width: "14rem",
-    marginBottom: 15
+  root: {
+    width: '17rem',
+    margin: 0,
   },
   cardgrid: {
+    width: 'auto',
     textAlign: "center",
-    margin: 30
+    margin: 30,
   }
 }));
 
 function LatestPosts(props) {
+
   const [posts, setPosts] = useState([]);
 
 
@@ -30,7 +33,7 @@ function LatestPosts(props) {
     switch(props.page) {
       case "home":
         const dbposts = [];
-        const adRef = db.collection('awefaf').orderBy("date", "desc").get().then(snapshot => {
+        const adRef = db.collection('ad').orderBy("timestamp", "desc").get().then(snapshot => {
           snapshot.forEach(doc => {
             dbposts.push(doc.data())
             console.log(doc.data())
@@ -50,14 +53,16 @@ function LatestPosts(props) {
 
   const classes = useStyles();
 
-  const latestpost = posts.map((post) =>
-    <AdCard {...post}/>
+  const latestposts = posts.map((post) =>
+    <div className={classes.root} class="grid-item">
+      <AdCard {...post}/>
+    </div>
   );
-
+    
   return (
     <div className={classes.cardgrid}>
       <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
-        {latestpost}
+        {latestposts}
       </div>
     </div>
   );
