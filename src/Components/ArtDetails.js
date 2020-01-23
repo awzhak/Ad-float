@@ -6,7 +6,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import Art from '../images/test.jpg';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import IconButton from '@material-ui/core/IconButton';
 import CardActions from '@material-ui/core/CardActions';
@@ -71,8 +70,7 @@ export default function ArtDetails(){
       })
     })
     //liked接続
-    const adRef = db.collection('liked').doc();
-
+    //const adRef = db.collection('liked').doc();
   },[])
   
   const classes = useStyles();

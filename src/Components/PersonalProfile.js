@@ -1,13 +1,32 @@
-import React,{useState} from 'react';
+import React, { useEffect , useState} from 'react';
 import {Card,Collapse,Row,Col} from 'react-bootstrap'; 
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
+import {db} from '../firebase/index';
+import moment from 'moment'
+
 
 //プロフィールの紹介文コンポーネント
 function Sentence(){
+  const [item,setItem] = useState('')
+  const [company,setCompany] = useState('')
+  const [money,setMoney] = useState('')
+  const [date,setDate] = useState({})
+  const [des,setDes] = useState('') 
+  const formId='ElVYSiPJrgq9RkE1tPiM';
+
+  useEffect(() => {
+    // ad接続
+    const formRef = db.collection('form').doc(formId);
+    formRef.get().then(docsnapshot => {
+      setItem(docsnapshot.data())
+      setDate(moment(docsnapshot.data().timestamp.toDate()).format('YYYY/MM/DD'))
+    })
+  },[])
+
   const Line_Left={
     fontSize:20,
     fontWeight:900,
@@ -31,36 +50,42 @@ function Sentence(){
             </Button>
           </Col>
           <Col xs={12} md={4}>
-            xs=12 md=5
+            {item.image}
           </Col>
           <Col xs={6} md={7}
           style={{marginTop:10}}
           >
             <Row>
               <Col md={4}>
+                <p className="sen" style={Line_Left}>タイトル</p>
+              </Col>
+              <Col md={7} style={Line_Right}>
+                <p>{item.title}</p>  
+              </Col>
+              <Col md={4}>
                 <p className="sen" style={Line_Left}>募集企業</p>
               </Col>
               <Col md={7} style={Line_Right}>
-                株式会社example
+                {item.company}
               </Col>
               <Col md={4}>
                 <p className="sen" style={Line_Left}>募集期間</p>
               </Col>
               <Col md={7} style={Line_Right}>
-                2019/12/01～2020/03/01
+                
               </Col>
               <Col md={4}>
                 <p className="sen" style={Line_Left}>報酬金範囲</p>
               </Col>
               <Col md={7} style={Line_Right}>
-                50,000円
+                {`¥${item.money}`}
               </Col>
             </Row>
           </Col>
           <Col md={2}>
             <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
             <Col md={2} style={{fontSize:20}}>
-              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              {item.description}
             </Col>
           </Col>
         </Row>
