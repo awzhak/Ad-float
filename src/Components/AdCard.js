@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { setFooter } from "./../stores/rendering";
+
 import ad from './ad.jpg';
 
 import { Avatar } from '@material-ui/core';
@@ -8,9 +11,10 @@ import { deepOrange } from '@material-ui/core/colors';
 import { Card } from 'react-bootstrap';
 
 const useStyles = makeStyles(theme => ({
+
   cardbody: {
     marginTop: 0,
-    margin: 20
+    margin: 20,
   },
   cardimg: {
     width: '100%',
@@ -56,10 +60,9 @@ function AdCard(props) {
     元の案件
     投稿日時
   */
-  const cards = (
-    <div class="grid-item">
-    <Card style={{ width: '20rem' }}>
-      <img className={classes.cardimg} src={props.thumbnail}/>
+  return(
+    <Card>
+      <img className={classes.cardimg} src={props.url}/>
       <div className={classes.cardbody}>
         <div>
           <Avatar className={classes.orange}>N</Avatar>
@@ -77,16 +80,10 @@ function AdCard(props) {
       <Card.Footer>
         <small className="text-muted">{props.from}</small>
         <div className={classes.date}>
-          <small className="text-muted">{props.date.seconds}</small>
+          <small className="text-muted">{props.timestamp.seconds}</small>
         </div>
       </Card.Footer>
     </Card>
-    </div>
-  );
-  return(
-    <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
-      {cards}
-    </div>
   );
 }
 
