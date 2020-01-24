@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 function AdCard(props) {
   const classes = useStyles();
   /*
-    propsにあるもの
+    props[1]にあるもの
 
     ユーザーアイコン
     ユーザーネーム
@@ -64,29 +64,50 @@ function AdCard(props) {
     投稿日時
     userIdからとってくる
   */
+
+  //User
   const [userName, setUserName] = useState();
   const [userId, setUserId] = useState();
-  const [userIcon, setUserIcon] = useState()
+  const [userIcon, setUserIcon] = useState();
+
+  //投稿作品
+
+  //元の案件
+  const [projectName, setProjectName] = useState();
   
   useEffect(() => {
     db.collection('users').get().then(snapshot => {
       snapshot.forEach(doc => {
-        if( props.userId === doc.id ){
-          setUserName(doc.get('name'))
-          setUserId(doc.get('userId'))
-          setUserIcon(doc.get('icon'))
-          console.log(doc.get('name'))
+        if( props[1].userId === doc.id ){
+          setUserName(doc.get('name'));
+          setUserId(doc.get('userId'));
+          setUserIcon(doc.get('icon'));
+          console.log(doc.get('name'));
         }
       })
     })
-  }, [props])
+
+    db.collection('form').get().then(snapshot => {
+      snapshot.forEach(doc =>{
+        if( props[1].formId === doc.id ){
+          setProjectName( doc.get('title') );
+        }
+      })
+    })
+
+
+  }, [props[1]])
   
   const UserPageUrl = "/user/" + userId;
+  const AdUrl = "/Ad/" + props[0];
+  const ProjectUrl = "/project/" + props[1].formId;
 
   return(
     <div className={classes.root}>
     <Card class="grid-item">
-      <img className={classes.cardimg} src={props.url}/>
+      <a href={AdUrl}>
+        <img className={classes.cardimg} src={props[1].url}/>
+      </a>
       <div className={classes.cardbody}>
         <div>
           <a href={UserPageUrl}>
@@ -98,17 +119,23 @@ function AdCard(props) {
           </a>
           </div>
         </div>
-        <h5 className={classes.cardtitle}>
-          {props.title}
-        </h5 >
+        <a href={AdUrl} style={{ color: 'black', textDecoration: 'none' }}>
+          <h5 className={classes.cardtitle}>
+            {props[1].title}
+          </h5 >
+        </a>
         <Card.Text>
-          {props.description}
+          {props[1].description}
         </Card.Text>
       </div>
       <Card.Footer>
-        <small className="text-muted">{props.from}</small>
+        <a href={ProjectUrl} style={{ textDecoration: 'none' }}>
+          <small className="text-muted">{projectName}</small>
+        </a>
         <div className={classes.date}>
-          <small className="text-muted">{props.timestamp.seconds}</small>
+          <a href={AdUrl} style={{ textDecoration: 'none' }}>
+            <small className="text-muted">{props[1].timestamp.seconds}</small>
+          </a>
         </div>
       </Card.Footer>
     </Card>
