@@ -3,7 +3,6 @@ import {Card,Collapse,Row,Col} from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from 'react-bootstrap/Image';
-import Container from '@material-ui/core/Container';
 
 import {db} from '../firebase/index';
 import moment from 'moment'
@@ -12,10 +11,7 @@ import moment from 'moment'
 //プロフィールの紹介文コンポーネント
 function Sentence(){
   const [item,setItem] = useState('')
-  const [company,setCompany] = useState('')
-  const [money,setMoney] = useState('')
-  const [date,setDate] = useState({})
-  const [des,setDes] = useState('') 
+  const [date,setDate] = useState()
   const formId='ElVYSiPJrgq9RkE1tPiM';
 
   useEffect(() => {
@@ -23,7 +19,7 @@ function Sentence(){
     const formRef = db.collection('form').doc(formId);
     formRef.get().then(docsnapshot => {
       setItem(docsnapshot.data())
-      setDate(moment(docsnapshot.data().timestamp.toDate()).format('YYYY/MM/DD'))
+      setDate(moment(docsnapshot.data().limit.toDate()).format('YYYY/MM/DD'))
     })
   },[])
 
@@ -50,9 +46,7 @@ function Sentence(){
             </Button>
           </Col>
           <Col xs={12} md={4}>
-            <Container>
-              <Image src={item.image}/>
-            </Container>
+            <Image  style={{ width: '100%', height: '100%'}} src={item.image}/>
           </Col>
           <Col xs={6} md={7}
           style={{marginTop:10}}
@@ -74,7 +68,7 @@ function Sentence(){
                 <p className="sen" style={Line_Left}>募集期間</p>
               </Col>
               <Col md={7} style={Line_Right}>
-                
+                {date}
               </Col>
               <Col md={4}>
                 <p className="sen" style={Line_Left}>報酬金範囲</p>
