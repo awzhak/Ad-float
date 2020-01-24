@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setFooter } from "./../stores/rendering";
+import { db } from './../firebase/index'
+
 
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,12 +17,10 @@ const useStyles = makeStyles(theme => ({
     padding: '5px'
   },
   cardbody: {
-    marginTop: 0,
-    margin: 20,
+    margin: 15,
   },
   cardimg: {
     width: '100%',
-    marginBottom: '8px'
   },
   orange: {
     color: theme.palette.getContrastText(deepOrange[500]),
@@ -62,16 +62,40 @@ function AdCard(props) {
     説明
     元の案件
     投稿日時
+    userIdからとってくる
   */
+  const [userName, setUserName] = useState();
+  const [userId, setUserId] = useState();
+  const [userIcon, setUserIcon] = useState()
+  
+  useEffect(() => {
+    db.collection('users').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        if( props.userId === doc.id ){
+          setUserName(doc.get('name'))
+          setUserId(doc.get('userId'))
+          setUserIcon(doc.get('icon'))
+          console.log(doc.get('name'))
+        }
+      })
+    })
+  }, [props])
+  
+  const UserPageUrl = "/user/" + userId;
+
   return(
     <div className={classes.root}>
     <Card class="grid-item">
       <img className={classes.cardimg} src={props.url}/>
       <div className={classes.cardbody}>
         <div>
-          <Avatar className={classes.orange}>N</Avatar>
+          <a href={UserPageUrl}>
+            <Avatar className={classes.orange} src={userIcon}>N</Avatar>
+          </a>
           <div className={classes.carduser}>
-            <h6 className={classes.username}>aaa@89439</h6>
+          <a href={UserPageUrl} style={{ color: 'black', textDecoration: 'none' }}>
+            <h6 className={classes.username}>{userName}@{userId}</h6>
+          </a>
           </div>
         </div>
         <h5 className={classes.cardtitle}>
