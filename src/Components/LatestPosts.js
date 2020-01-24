@@ -29,8 +29,11 @@ function LatestPosts(props) {
         const dbposts = [];
         db.collection('ad').orderBy("timestamp", "desc").get().then(snapshot => {
           snapshot.forEach(doc => {
-            dbposts.push(doc.data())
-            console.log(doc.data())
+            const post = [];
+            post.push(doc.id)
+            post.push(doc.data())
+            dbposts.push(post)
+            console.log(dbposts)
           })
           setPosts(dbposts);
         })
