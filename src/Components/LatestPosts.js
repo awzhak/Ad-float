@@ -27,7 +27,7 @@ function LatestPosts(props) {
     switch(props.page) {
       case "home":
         const dbposts = [];
-        const adRef = db.collection('ad').orderBy("timestamp", "desc").get().then(snapshot => {
+        db.collection('ad').orderBy("timestamp", "desc").get().then(snapshot => {
           snapshot.forEach(doc => {
             dbposts.push(doc.data())
             console.log(doc.data())
@@ -37,9 +37,15 @@ function LatestPosts(props) {
         break;
       case "posts":
         break;
-      case "projects":
-        break;
       case "ranking":
+        const dbposts2 = [];
+        db.collection('ad').orderBy("likecount", "desc").get().then(snapshot => {
+          snapshot.forEach(doc => {
+            dbposts2.push(doc.data())
+            console.log(doc.data())
+          })
+          setPosts(dbposts2);
+        })
         break;
     }
   },[props.page])

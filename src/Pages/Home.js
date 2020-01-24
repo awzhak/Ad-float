@@ -68,7 +68,7 @@ function Home() {
           centered
         >
           <Tab label="Home" {...a11yProps(0)}/>
-          <Tab label="投稿" {...a11yProps(1)}/>
+          <Tab label="作品" {...a11yProps(1)}/>
           <Tab label="募集" {...a11yProps(2)}/>
           <Tab label="Ranking" {...a11yProps(3)}/>
         </Tabs>
@@ -96,7 +96,7 @@ function Home() {
       <TabPanel value={value} index={2}>
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
-            最新の投稿
+            最新の案件
           </Typography>
           <LatestPosts page={"projects"} />
         </center>
@@ -105,7 +105,7 @@ function Home() {
       <TabPanel value={value} index={3}>
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
-            最新の投稿
+            人気投稿
           </Typography>
           <LatestPosts page={"ranking"} />
         </center>

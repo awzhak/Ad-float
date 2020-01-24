@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardimg: {
     width: '100%',
+    marginBottom: '8px'
   },
   orange: {
     color: theme.palette.getContrastText(deepOrange[500]),
