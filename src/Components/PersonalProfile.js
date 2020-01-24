@@ -3,6 +3,8 @@ import {Card,Collapse,Row,Col} from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from 'react-bootstrap/Image';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 import {db} from '../firebase/index';
 import moment from 'moment'
@@ -40,15 +42,15 @@ function Sentence(){
                 marginRight:70,
               }}
         >
-          <Col md={{ span: 4, offset: 11 }}>
+          <Col md={{ span: 1, offset: 11 }}>
             <Button variant="outlined" color="primary">
               編集
             </Button>
           </Col>
-          <Col xs={12} md={4}>
+          <Col xs={12} md={5}>
             <Image  style={{ width: '100%', height: '100%'}} src={item.image}/>
           </Col>
-          <Col xs={6} md={7}
+          <Col xs={6} md={6}
           style={{marginTop:10}}
           >
             <Row>
@@ -59,7 +61,7 @@ function Sentence(){
                 <p>{item.title}</p>  
               </Col>
               <Col md={4}>
-                <p className="sen" style={Line_Left}>募集企業</p>
+                <p className="sen" style={Line_Left}>応募団体</p>
               </Col>
               <Col md={7} style={Line_Right}>
                 {item.company}
@@ -127,10 +129,17 @@ function LatestPosts() {
         投稿一覧
       </center>
       <div className={classes.cardgrid}>
-      <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
-        {latestpost}
+        <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
+          {latestpost}
+        </div>
+        <div style={{textAlign:'right'}}>
+          <Fab
+          style={{marginBottom:30}} 
+          color="primary" aria-label="add">
+            <AddIcon />
+          </Fab>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

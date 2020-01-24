@@ -132,7 +132,7 @@ function SentenceEdit(){
           marginRight:70,
          }}
       >
-        <Col md={{ span: 4, offset: 11 }}>
+        <Col md={{ span: 1, offset: 11 }}>
           <Button 
           variant="outlined" 
           color="primary"
@@ -140,7 +140,7 @@ function SentenceEdit(){
             保存
           </Button>
         </Col>
-        <Col xs={12} md={4}>
+        <Col xs={12} md={5}>
           <DropzoneArea
             dropzoneText="Upload File"
             filesLimit={1}
@@ -151,7 +151,7 @@ function SentenceEdit(){
             onChange={file => (setFile(file))}
           />
         </Col>
-        <Col xs={6} md={7}
+        <Col xs={6} md={6}
           style={{marginTop:10}}
         >
           <Row>
@@ -167,12 +167,12 @@ function SentenceEdit(){
               />
             </Col>
             <Col md={4}>
-              <p className="sen" style={Line_Left}>募集企業</p>
+              <p className="sen" style={Line_Left}>応募団体</p>
             </Col>
             <Col md={7} style={Line_Right}>
               <TextField 
               id="standard-basic" 
-              label="企業名" 
+              label="団体名" 
               onChange={(e) => handleCompany(e)}
               value={company}
               />

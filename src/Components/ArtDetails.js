@@ -43,20 +43,8 @@ export default function ArtDetails(){
   const [date,setDate] = useState({})
   const adId = '28rb8b1fcdPytQZw8ciB';
   const userId = 'Wisga4vfNOCkXjGjQNhe';
+  const likeId = '4U9dY8k9orn18F9IO2AR';
 
-  const handleClickAdd = (event) => {
-    const adRef = db.collection('liked').add({
-      adId: adId,
-      userId: userId
-    })
-  }
-
-  const handleClickDel = (event) => {
-    const adRef = db.collection('liked').add({
-      adId: adId,
-      userId: userId
-    })
-  }
 
   useEffect(() => {
     // ad接続
@@ -70,9 +58,30 @@ export default function ArtDetails(){
       })
     })
     //liked接続
-    //const adRef = db.collection('liked').doc();
+    const likeRef = db.collection('liked').where('adId', '==', adId).where('userId', '==', userId);
+    likeRef.get().then(snapshot => {
+      if(snapshot.empty) {
+        // ドキュメントに一致なし
+        setFlag(true)
+      } else {
+        // ドキュメントに一致
+        setFlag(false)
+      }
+    })
+
   },[])
   
+  const handleClickAdd = (event) => {
+    const likeRef = db.collection('liked').add({
+      adId: adId,
+      userId: userId
+    })
+  }
+
+  const handleClickDel = (event) => {
+    const likeDefRef = db.collection('liked').doc().delete()
+  }
+
   const classes = useStyles();
   return(
       <Card className={classes.card}>
