@@ -37,10 +37,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function ArtDetails(){
   // アイコンフラグ
-  const [flag, setFlag] = useState(false)
+  const [flag, setFlag] = useState()
   const [item,setItem] = useState({})
   const [user,setUser] = useState({})
   const [date,setDate] = useState({})
+  const [id,setId] = useState()
   const adId = '28rb8b1fcdPytQZw8ciB';
   const userId = 'Wisga4vfNOCkXjGjQNhe';
   const likeId = '4U9dY8k9orn18F9IO2AR';
@@ -76,10 +77,19 @@ export default function ArtDetails(){
       adId: adId,
       userId: userId
     })
+    setFlag(false)
   }
 
   const handleClickDel = (event) => {
-    const likeDefRef = db.collection('liked').doc().delete()
+    const likeRef = db.collection('liked').where('adId', '==', adId).where('userId', '==', userId);
+    likeRef.get().then(snapshot => {
+        setFlag(false)
+        snapshot.forEach(doc => {
+          console.log(doc.id)
+          const likeDefRef = db.collection('liked').doc(doc.id).delete()
+          setFlag(true)
+        })
+    })
   }
 
   const classes = useStyles();
