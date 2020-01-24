@@ -1,9 +1,9 @@
 import React, { useEffect , useState} from 'react';
 import {Card,Collapse,Row,Col} from 'react-bootstrap'; 
-import IconButton from '@material-ui/core/IconButton';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import Image from 'react-bootstrap/Image';
+import Container from '@material-ui/core/Container';
 
 import {db} from '../firebase/index';
 import moment from 'moment'
@@ -50,7 +50,9 @@ function Sentence(){
             </Button>
           </Col>
           <Col xs={12} md={4}>
-            {item.image}
+            <Container>
+              <Image src={item.image}/>
+            </Container>
           </Col>
           <Col xs={6} md={7}
           style={{marginTop:10}}
