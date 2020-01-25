@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import { lightBlue } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 
@@ -39,14 +39,14 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: lightBlue[500],
   },
 }));
 
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
   // formId 受け取り
-  const formId = 'Ic9HRa5Dy6zpDH0btH0s';
+  const formId = 'Ic9HRa5Dy6zpDH0btH0s';  // props.formId
   const classes = useStyles();
   // 募集情報
   const [Item, setItem] = useState({})
@@ -100,11 +100,13 @@ export default function RecipeReviewCard() {
       </CardContent>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            M
-          </Avatar>
+          <Avatar
+          aria-label="recipe"
+          className={classes.avatar}
+          src={user.icon}
+          />
         }
-        title="投稿者"
+        title={Item.company}
         subheader={user.name}
       />
     </Card>
