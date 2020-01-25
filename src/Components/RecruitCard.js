@@ -14,6 +14,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import Slide from '@material-ui/core/Slide';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ScrollToTopOnMount from './ScrollToTopOnMount'
+import Button from '@material-ui/core/Button';
 
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -31,13 +32,32 @@ const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 'auto',
     margin: '20px',
-    width: '260px',
-    height: '400px',
+    width: '320px',
+    height: 'auto',
     textAlign: 'left',
   },
   media: {
     height: 0,
     paddingTop: '75.25%', // 16:9
+  },
+  text: {
+    paddingBottom: 0,
+    height: 80,
+  },
+  text2: {
+    paddingBottom: 7,
+    paddingTop: 5,
+  },
+  maney: {
+    padding:0,
+  },
+  expand: {
+    width: 500,
+    transform: 'rotate(0deg)',
+    margin: '0px auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   avatar: {
     backgroundColor: lightBlue[500],
@@ -46,12 +66,12 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function RecruitCard(props) {
-  // formId 受け取り
   const classes = useStyles();
   // 投稿者情報
   const [user, setUser] = useState({})
   // 日付
   const [date, setDate] = useState()
+  const [limit, setLimit] = useState()
   // ロードフラグ
   const [load, setLoad] = useState(true)
   // ルーター
@@ -66,6 +86,7 @@ export default function RecruitCard(props) {
             const ref = await userRef.get().then(docsnapshot => {
                 setUser(docsnapshot.data())
                 setDate(moment(props.timestamp.toDate()).format('YYYY/MM/DD'))
+                setLimit(moment(props.limit.toDate()).format('YYYY/MM/DD'))
             })
             setLoad(false);
         } catch(e) {
@@ -90,7 +111,7 @@ export default function RecruitCard(props) {
               </Avatar>
             }
             title={props.title}
-            subheader={`掲載日:${date}`}
+            subheader={`期限日:${date}～${limit}`}
           />
           {/* 募集詳細画面のパス */}
           <Link href={`/NewProductionPost/${props.id}`}　onClick={() => history.push(`/NewProductionPost/${props.id}`)}>
@@ -100,12 +121,13 @@ export default function RecruitCard(props) {
             title=""
           />
           </Link>
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
+          <CardContent className={classes.text} >
+            <Typography variant="body2" component="p">
               {props.description}
             </Typography>
           </CardContent>
           <CardHeader
+            className={classes.text2}
             avatar={
               <Avatar
               aria-label="recipe"
@@ -116,10 +138,18 @@ export default function RecruitCard(props) {
             title={props.company}
             subheader={user.name}
           />
+          <CardActions className={classes.maney}>
+            <Button 
+            className={classes.expand}
+            size="small"
+            variant="contained"
+            color="primary">
+              {`¥${props.money}`}
+            </Button>
+          </CardActions>
         </Card>
         </Slide>
         }
-    
     </div>
   );
  }

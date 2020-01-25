@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { lightBlue } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import Button from '@material-ui/core/Button';
 
 // firebase
 import {db} from '../firebase/index'
@@ -21,22 +22,31 @@ const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 'auto',
     margin: '20px auto',
-    width: '400px',
+    width: '320px',
     height: 'auto',
   },
   media: {
     height: 0,
     paddingTop: '75.25%', // 16:9
   },
+  text: {
+    paddingBottom: 0,
+    height: 80,
+  },
+  text2: {
+    paddingBottom: 7,
+    paddingTop: 5,
+  },
+  maney: {
+    padding:0,
+  },
   expand: {
+    width: 500,
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: lightBlue[500],
@@ -54,6 +64,7 @@ export default function RecipeReviewCard(props) {
   const [user, setUser] = useState({})
   // 日付
   const[date, setDate] = useState()
+  const [limit, setLimit] = useState()
 
   useEffect(() => {
     // 募集情報
@@ -63,6 +74,7 @@ export default function RecipeReviewCard(props) {
       // 募集情報セット
       setItem(docsnapshot.data())
       setDate(moment(docsnapshot.data().timestamp.toDate()).format('YYYY/MM/DD'))
+      setLimit(moment(docsnapshot.data().limit.toDate()).format('YYYY/MM/DD'))
       // 募集投稿ユーザー情報
       const userRef = db.collection('users').doc(docsnapshot.data().userId);
       userRef.get().then(snapshot => {
@@ -86,19 +98,20 @@ export default function RecipeReviewCard(props) {
         //   </IconButton>
         // }
         title={Item.title}
-        subheader={`掲載日:${date}`}
+        subheader={`期限日:${date}～${limit}`}
       />
       <CardMedia
         className={classes.media}
         image={Item.image}
         title=""
       />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+      <CardContent className={classes.text}>
+        <Typography variant="body2" component="p">
           {Item.description}
         </Typography>
       </CardContent>
       <CardHeader
+      className={classes.text2}
         avatar={
           <Avatar
           aria-label="recipe"
@@ -109,6 +122,15 @@ export default function RecipeReviewCard(props) {
         title={Item.company}
         subheader={user.name}
       />
+      <CardActions className={classes.maney}>
+            <Button 
+            className={classes.expand}
+            size="small"
+            variant="contained"
+            color="primary">
+              {`¥${props.money}`}
+            </Button>
+          </CardActions>
     </Card>
   );
         }

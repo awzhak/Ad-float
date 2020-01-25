@@ -36,10 +36,13 @@ function LatestPosts(props) {
     switch(props.page) {
       case "home":
         const dbposts = [];
-        const adRef = db.collection('ad').orderBy("timestamp", "desc").get().then(snapshot => {
+        db.collection('ad').orderBy("timestamp", "desc").get().then(snapshot => {
           snapshot.forEach(doc => {
-            dbposts.push(doc.data())
-            console.log(doc.data())
+            const post = [];
+            post.push(doc.id)
+            post.push(doc.data())
+            dbposts.push(post)
+            console.log(dbposts)
           })
           setPosts(dbposts);
         })
@@ -48,14 +51,17 @@ function LatestPosts(props) {
         const adposts = [];
         db.collection('ad').orderBy("timestamp", "desc").get().then(snapshot => {
           snapshot.forEach(doc => {
-            adposts.push(doc.data())
-            console.log(doc.data())
+            const post = [];
+            post.push(doc.id)
+            post.push(doc.data())
+            adposts.push(post)
+            console.log(adposts)
           })
           setPosts(adposts);
         })
         break;
       case "projects":
-        const formRef = db.collection('form').orderBy("timestamp", "desc").limit(3).onSnapshot(coll => {
+        db.collection('form').orderBy("timestamp", "desc").limit(3).onSnapshot(coll => {
           const formposts = [];
           coll.forEach(doc => {
             let data = doc.data() // 募集情報

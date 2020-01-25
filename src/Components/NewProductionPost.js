@@ -98,6 +98,7 @@ export default function LayoutTextFields() {
             description: desc,  // 説明
             formId: formId,     // 募集ID
             userId: uid,   // ユーザーID
+            likecount: 0,   // ライクカウント
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           })
           // 投稿数カウント
@@ -109,6 +110,7 @@ export default function LayoutTextFields() {
         })
       }
     )
+    history.push(`/`)
   };
 
   useEffect(scrollToBottom, [EndRef]);
