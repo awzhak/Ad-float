@@ -7,6 +7,7 @@ import { db } from './../firebase/index'
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import { Card } from 'react-bootstrap';
 
@@ -21,6 +22,8 @@ const useStyles = makeStyles(theme => ({
   },
   cardimg: {
     width: '100%',
+    maxHeight: '300px',
+    objectFit: 'cover'
   },
   orange: {
     color: theme.palette.getContrastText(deepOrange[500]),
@@ -42,10 +45,15 @@ const useStyles = makeStyles(theme => ({
   },
   date: {
     float: 'right',
+  },
+  likefooter: {
+    textAlign: 'right',
+  },
+  likecount: {
+    marginLeft: '5px'
   }
 }));
 
-//ユーザーのid、募集idからそれを取得するコードをuseEffect書く
 //文字数制限
 
 function AdCard(props) {
@@ -74,6 +82,7 @@ function AdCard(props) {
 
   //元の案件
   const [projectName, setProjectName] = useState();
+  const [projectUrl, setProjectUrl] = useState();
   
   useEffect(() => {
     db.collection('users').get().then(snapshot => {
@@ -91,16 +100,17 @@ function AdCard(props) {
       snapshot.forEach(doc =>{
         if( props[1].formId === doc.id ){
           setProjectName( doc.get('title') );
+          setProjectUrl(props[1].formId)
         }
       })
     })
-
-
-  }, [props[1]])
+    
+    
+  }, [props])
   
-  const UserPageUrl = "/user/" + userId;
   const AdUrl = "/Ad/" + props[0];
-  const ProjectUrl = "/project/" + props[1].formId;
+  const UserPageUrl = "/user/" + userId;
+  const ProjectUrl = "/project/" + projectUrl;
 
   return(
     <div className={classes.root}>
@@ -127,6 +137,10 @@ function AdCard(props) {
         <Card.Text>
           {props[1].description}
         </Card.Text>
+        <div className={classes.likefooter}>
+          <FavoriteIcon color="secondary" />
+          <span className={classes.likecount}>{props[1].likecount}</span>
+        </div>
       </div>
       <Card.Footer>
         <a href={ProjectUrl} style={{ textDecoration: 'none' }}>
