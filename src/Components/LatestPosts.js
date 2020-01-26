@@ -44,8 +44,11 @@ function LatestPosts(props) {
         const dbposts2 = [];
         db.collection('ad').orderBy("likecount", "desc").get().then(snapshot => {
           snapshot.forEach(doc => {
-            dbposts2.push(doc.data())
-            console.log(doc.data())
+            const post2 = [];
+            post2.push(doc.id)
+            post2.push(doc.data())
+            dbposts2.push(post2)
+            console.log(dbposts2)
           })
           setPosts(dbposts2);
         })
