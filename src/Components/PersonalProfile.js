@@ -152,6 +152,8 @@ export default function PersonProfile(props){
   return(
     <div>
       <Sentence id={formId}/>
+      <br/>
+      <LatestPosts/>
     </div>
   );
 }
