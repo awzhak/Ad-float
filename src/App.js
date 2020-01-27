@@ -46,7 +46,7 @@ function App() {
             <Route path='/user/:id' component={UserPage} />
             <Route path='/user/:id/edit' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />
-            <Route path='/companyPost' exact component={CompanyPost} />
+            <Route path='/projectpost' exact component={CompanyPost} />
             <Route path='/adposts/:id' component={ArtDetails} />
             <Route path='/projects/:id' component={PersonalProfile} />
             <Route path='/projects/:id/edit' component={PersonalProfileEdit} />
