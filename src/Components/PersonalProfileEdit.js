@@ -167,7 +167,7 @@ function SentenceEdit(){
               />
             </Col>
             <Col md={4}>
-              <p className="sen" style={Line_Left}>応募団体</p>
+              <p className="sen" style={Line_Left}>募集団体</p>
             </Col>
             <Col md={7} style={Line_Right}>
               <TextField 
@@ -178,7 +178,7 @@ function SentenceEdit(){
               />
             </Col>
             <Col md={4}>
-              <p className="sen" style={Line_Left}>募集期間</p>
+              <p className="sen" style={Line_Left}>募集期日</p>
             </Col>
             <Col md={5} style={Line_Right}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>

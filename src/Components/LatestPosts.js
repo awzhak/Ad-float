@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
   },
   cardgrid: {
     width: 'auto',
-    textAlign: "center",
     display: 'inline-block',
   },
   grid: {

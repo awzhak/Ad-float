@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setFooter } from "./../stores/rendering";
 import { db } from './../firebase/index'
+import moment from 'moment'
 
 
 import { Avatar } from '@material-ui/core';
@@ -123,7 +124,7 @@ function AdCard(props) {
           </a>
           <div className={classes.carduser}>
           <a href={UserPageUrl} style={{ color: 'black', textDecoration: 'none' }}>
-            <h6 className={classes.username}>{userName}@{userId}</h6>
+            <h6 className={classes.username}>{userName}<small className="text-muted">@{userId}</small></h6>
           </a>
           </div>
         </div>
@@ -146,7 +147,7 @@ function AdCard(props) {
         </a>
         <div className={classes.date}>
           <a href={AdUrl} style={{ textDecoration: 'none' }}>
-            <small className="text-muted">{props[1].timestamp.seconds}</small>
+            <small className="text-muted">{moment(props[1].timestamp.toDate()).format('YYYY/MM/DD')}</small>
           </a>
         </div>
       </Card.Footer>
