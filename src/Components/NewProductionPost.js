@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function LayoutTextFields() {
+export default function LayoutTextFields(props) {
   // formIdの受け取り
   const { formId } = useParams();
   // 現在ログイン中のユーザーID
