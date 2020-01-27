@@ -43,8 +43,8 @@ export default function ArtDetails(){
   const [user,setUser] = useState({})
   const [date,setDate] = useState({})
   const [id,setId] = useState()
-  const adId = '28rb8b1fcdPytQZw8ciB';
-  const userId = 'Wisga4vfNOCkXjGjQNhe';
+  const adId = props.match.params.id;
+  const userId = item.userId;
   const likeId = '4U9dY8k9orn18F9IO2AR';
 
 

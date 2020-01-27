@@ -11,10 +11,11 @@ import moment from 'moment'
 
 
 //プロフィールの紹介文コンポーネント
-function Sentence(){
+function Sentence(props){
   const [item,setItem] = useState('')
   const [date,setDate] = useState()
-  const formId='ElVYSiPJrgq9RkE1tPiM';
+  const formId= props.match.params.id;
+
 
   useEffect(() => {
     // ad接続
