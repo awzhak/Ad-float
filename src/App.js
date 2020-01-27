@@ -11,6 +11,9 @@ import Home from './Pages/Home';
 import UserPage from './Pages/UserPage';
 import EditProfileDetails from './Pages/EditProfileDetails';
 import NewProductioinPost from './Components/NewProductionPost';
+import ArtDetails from './Components/ArtDetails'
+import PersonalProfile from './Components/PersonalProfile'
+import PersonalProfileEdit from './Components/PersonalProfileEdit'
 
 import { Button } from 'react-bootstrap'
 
@@ -42,7 +45,9 @@ function App() {
             <Route path='/user/:id' component={UserPage} />
             <Route path='/user/:id/edit' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />
-            <Route path='/NewProductionPost/:formId' component={NewProductioinPost} />
+            <Route path='/posts/:id' component={ArtDetails} />
+            <Route path='/projects/:id' component={PersonalProfile} />
+            <Route path='/projects/:id/edit' component={PersonalProfileEdit} />
           </Switch>
           <Footer />
       </BrowserRouter>
