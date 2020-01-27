@@ -104,16 +104,6 @@ function LatestPosts(props) {
   return (
     <div className={classes.cardgrid}>
       <div class="grid" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
-<<<<<<< HEAD
-        <Grid
-          className={classes.grid}
-          container spacing={3}
-          justify="center"
-          alignItems="center"
-        >
-          {latestposts}
-        </Grid> 
-=======
       <Grid
         className={classes.grid}
         container spacing={3}
@@ -122,7 +112,6 @@ function LatestPosts(props) {
       >
         {latestposts}
         </Grid>
->>>>>>> ae147713d8aeab1e4636037d9088bb65c7eb2214
       </div>
     </div>
   );
