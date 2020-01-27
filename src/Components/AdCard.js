@@ -130,7 +130,7 @@ function AdCard(props) {
           <span className={classes.likecount}>{props[1].likecount}</span>
         </div>
       </div>
-      <Card.Footer>
+      <Card.Footer style={{textAlign:'left'}}>
         <a href={ProjectUrl} style={{ textDecoration: 'none' }}>
           <small className="text-muted">{projectName}</small>
         </a>
