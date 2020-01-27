@@ -75,7 +75,7 @@ function UserIcon() {
           rootClose={true}
         >
           <Popover id="popover-contained" className={classes.root}>
-            <Popover.Title as="h3" className="font-black">sssss</Popover.Title>
+            <Popover.Title as="h3" className="font-black">status</Popover.Title>
             <Popover.Content>
               <Card style={{ width: '14rem' }}>
                 { iconurl ? (
