@@ -12,6 +12,7 @@ import { sleepy } from 'react-icons-kit/icomoon';
 const useStyles = makeStyles(theme => ({
   root: {
     margin: "20vh",
+    marginTop: "40px",
     maxWidth: 550
   },
   table: {
@@ -28,8 +29,6 @@ const useStyles = makeStyles(theme => ({
   },
   orange: {
     marginBottom: 20,
-    color: theme.palette.getContrastText(deepOrange[500]),
-    backgroundColor: deepOrange[500],
     width: theme.spacing(30),
     height: theme.spacing(30),
     margin: 0
@@ -80,7 +79,7 @@ function ProfileDetails(props) {
   return (
     <div className={classes.root}>
       <center>
-        <Avatar className={classes.orange} src={icon}>M</Avatar>
+        <Avatar className={classes.orange} src={icon}></Avatar>
       </center>
       <TableContainer component={Paper}>
         <Toolbar>

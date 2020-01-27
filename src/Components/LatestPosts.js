@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   grid: {
     width: 'auto',
   },
+  cardgrid: {
+    margin: 30,
+  }
 }));
 
 function LatestPosts(props) {
@@ -73,6 +76,17 @@ function LatestPosts(props) {
         })
         break;
       case "ranking":
+        const dbposts2 = [];
+        db.collection('ad').orderBy("likecount", "desc").get().then(snapshot => {
+          snapshot.forEach(doc => {
+            const post2 = [];
+            post2.push(doc.id)
+            post2.push(doc.data())
+            dbposts2.push(post2)
+            console.log(dbposts2)
+          })
+          setPosts(dbposts2);
+        })
         break;
     }
   },[props.page])
@@ -90,15 +104,8 @@ function LatestPosts(props) {
 
   return (
     <div className={classes.cardgrid}>
-      <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
-      <Grid
-        className={classes.grid}
-        container spacing={3}
-        justify="center"
-        alignItems="center"
-      >
+      <div class="grid" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
         {latestposts}
-      </Grid>
       </div>
     </div>
   );

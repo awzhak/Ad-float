@@ -117,7 +117,7 @@ function Home() {
       <TabPanel value={value} index={4}>
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
-            最新の投稿
+            人気投稿
           </Typography>
           <LatestPosts page={"ranking"} />
         </center>
