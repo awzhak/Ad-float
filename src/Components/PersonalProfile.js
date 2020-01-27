@@ -14,7 +14,8 @@ import moment from 'moment'
 function Sentence(props){
   const [item,setItem] = useState('')
   const [date,setDate] = useState()
-  const formId= props.match.params.id;
+  console.log(props)
+  const formId= props.id
 
 
   useEffect(() => {
@@ -146,12 +147,11 @@ function LatestPosts() {
 }
 
 //プロフィールメインのコンポーネント
-export default function PersonProfile(){
+export default function PersonProfile(props){
+  const formId = props.match.params.id
   return(
     <div>
-      <Sentence/>
-      <br/>
-      <LatestPosts/>
+      <Sentence id={formId}/>
     </div>
   );
 }
