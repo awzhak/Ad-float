@@ -10,6 +10,7 @@ import AdCard from './Components/AdCard';
 import Home from './Pages/Home';
 import UserPage from './Pages/UserPage';
 import EditProfileDetails from './Pages/EditProfileDetails';
+import NewProductioinPost from './Components/NewProductionPost';
 
 import { Button } from 'react-bootstrap'
 
@@ -41,9 +42,10 @@ function App() {
             <Route path='/user/:id' component={UserPage} />
             <Route path='/user/:id/edit' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />
+            <Route path='/NewProductionPost/:formId' component={NewProductioinPost} />
           </Switch>
+          <Footer />
       </BrowserRouter>
-      <Footer/>
     </div>
   );
 }

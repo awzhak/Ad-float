@@ -1,9 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from './NewProductionPostCard'
 import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button';
+// 最上部から表示させるコンポーネント
+import ScrollToTopOnMount from './ScrollToTopOnMount';
+
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import {useHistory, useParams} from 'react-router-dom';
 
 //firebase
 import firebase from 'firebase/app'
@@ -44,7 +50,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function LayoutTextFields() {
   // formIdの受け取り
-  const formId = 'Ic9HRa5Dy6zpDH0btH0s';
+  const { formId } = useParams();
+  // 現在ログイン中のユーザーID
+  const uid = useSelector(state => state.uid.uid);
   const classes = useStyles();
   // 広告の情報state
   const [file, setFile] = useState(null)
@@ -52,6 +60,13 @@ export default function LayoutTextFields() {
   const [desc, setDesc] = useState('')
   // ストレージref
   const storageRef = storage.ref()
+  const EndRef = useRef(null)
+  // ルータ
+  const history = useHistory();
+  // スクロールハンドル
+  const scrollToBottom = () => {
+    EndRef.current.scrollIntoView({ behavior: "smooth", block: "center" })
+  }
   // タイトルハンドル
   const handleTitleChange = (event) => {
     setTitle(event.target.value)
@@ -82,7 +97,8 @@ export default function LayoutTextFields() {
             url: downloadURL,   // 作品URL
             description: desc,  // 説明
             formId: formId,     // 募集ID
-            userId: 'userId',   // ユーザーID
+            userId: uid,   // ユーザーID
+            likecount: 0,   // ライクカウント
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           })
           // 投稿数カウント
@@ -94,14 +110,23 @@ export default function LayoutTextFields() {
         })
       }
     )
-
+    history.push(`/`)
   };
+
+  useEffect(scrollToBottom, [EndRef]);
 
   return (
     <div className={classes.root}>
-         <Card />  {/*　募集IDをpropsで流す */}
+      <ScrollToTopOnMount />
+      <Button style={{ margin: 50, position: 'absolute', width: 'auto'}}
+                variant="contained" color="primary" disableElevation
+                onClick={() => history.goBack()}>
+                ←Back
+            </Button>
+         {/* <Card formId={formId}/> */}
         <div className={classes.text}>
             <TextField
+                ref={EndRef}
                 required
                 style={{ margin: '20px auto' ,width: '500px'}}
                 id="outlined-required"
@@ -134,7 +159,7 @@ export default function LayoutTextFields() {
                 value={desc}
                 />
             </div>
-            <Button style={{ marginBottom: 200 ,width: '500px'}}
+            <Button style={{ marginBottom: 20 ,width: '500px'}}
                 variant="contained" color="primary" disableElevation
                 onClick={(e) => handleClick(e)}>
                 投稿

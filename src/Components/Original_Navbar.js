@@ -172,7 +172,7 @@ export default function Original_Navbar() {
           <Typography className={classes.title} variant="h6" noWrap>
             <a href="/" style={{color:"white", textDecoration:"none"}}>AdFloat</a>
           </Typography>
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -184,10 +184,10 @@ export default function Original_Navbar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+          {/* <div className={classes.sectionDesktop}> */}
+            {/* <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={10} color="secondary">
                 <MailIcon />
               </Badge>
@@ -196,10 +196,10 @@ export default function Original_Navbar() {
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <UserIcon />
-          </div>
-          <div className={classes.sectionMobile}>
+          {/* </div> */}
+          {/* <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}
@@ -209,7 +209,7 @@ export default function Original_Navbar() {
             >
               <MoreIcon />
             </IconButton>
-          </div>
+          </div> */}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

@@ -60,11 +60,9 @@ function AdCard(props) {
   const classes = useStyles();
   /*
     props[1]にあるもの
-
     ユーザーアイコン
     ユーザーネーム
     ユーザーid
-
     作品のサムネイル
     タイトル
     説明

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="ロゴ.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-206.06144"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1841"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="false"
+     showborder="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#161717;fill-opacity:0.95220588;stroke:#000000;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
+       id="rect819"
+       width="210.15469"
+       height="131.53571"
+       x="2.267869"
+       y="74.75" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.93283081px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#2ff3f1;fill-opacity:1;stroke:none;stroke-width:2.54013371"
+       x="35.312981"
+       y="174.03069"
+       id="text817"
+       transform="scale(1.0680565,0.93628006)"><tspan
+         sodipodi:role="line"
+         id="tspan815"
+         x="35.312981"
+         y="174.03069"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.93283081px;font-family:Simplifica;-inkscape-font-specification:Simplifica;fill:#2ff3f1;fill-opacity:1;stroke-width:2.54013371"><tspan
+   style="fill:#f7f7f1;fill-opacity:1;stroke-width:2.54013371"
+   id="tspan951">Ad</tspan>Float</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot923"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:Simplifica;font-style:normal;font-weight:normal;font-size:192px;line-height:1.25;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Simplifica;font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion925"><rect
+           id="rect927"
+           width="491.42856"
+           height="442.85715"
+           x="-1262.8572"
+           y="585.37683" /></flowRegion><flowPara
+         id="flowPara929" /></flowRoot>  </g>
+</svg>

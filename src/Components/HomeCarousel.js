@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Carousel, Card, Button } from 'react-bootstrap'
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
+import Recruit from './NewProductionPostCard';
 
 const useStyles = makeStyles(theme => ({
   root: {

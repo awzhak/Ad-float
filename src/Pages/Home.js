@@ -8,10 +8,15 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+// トップページ
+import TopPage from './Toppage';
+import SearchBar from './../Components/SearchBar'
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
+  },
+  search: {
   },
 });
 function TabPanel(props) {
@@ -44,15 +49,13 @@ function a11yProps(index) {
 
 
 
-
-
-
 function Home() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    console.log(value)
   };
 
   const colors = [ 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink' ]
@@ -67,14 +70,21 @@ function Home() {
           textColor="primary"
           centered
         >
-          <Tab label="Home" {...a11yProps(0)}/>
-          <Tab label="作品" {...a11yProps(1)}/>
-          <Tab label="募集" {...a11yProps(2)}/>
-          <Tab label="Ranking" {...a11yProps(3)}/>
+          <Tab label="Top"  {...a11yProps(0)}/>
+          <Tab label="Home"  {...a11yProps(1)}/>
+          <Tab label="投稿" {...a11yProps(2)}/>
+          <Tab label="募集" {...a11yProps(3)}/>
+          <Tab label="Ranking" {...a11yProps(4)}/>
         </Tabs>
       </Paper>
 
       <TabPanel value={value} index={0}>
+        <center>
+          <TopPage onClick={handleChange} value={value}/>
+        </center>
+      </TabPanel>
+
+      <TabPanel value={value} index={1}>
         <HomeCarousel page={"home"} />
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
@@ -84,8 +94,9 @@ function Home() {
         </center>
       </TabPanel>
 
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={2}>
         <center>
+        <SearchBar />
           <Typography variant="h3" gutterBottom color='primary'>
             最新の投稿
           </Typography>
@@ -93,16 +104,17 @@ function Home() {
         </center>
       </TabPanel>
 
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={3}>
         <center>
-          <Typography variant="h3" gutterBottom color='primary'>
-            最新の案件
+        <SearchBar />
+          <Typography className={classes.padding} variant="h3" gutterBottom color='primary'>
+            最新の募集
           </Typography>
           <LatestPosts page={"projects"} />
         </center>
       </TabPanel>
 
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={4}>
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
             人気投稿
@@ -111,6 +123,7 @@ function Home() {
         </center>
       </TabPanel>
     </>
+    
   );
 }
 

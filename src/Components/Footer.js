@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: '420px',
     backgroundColor: '#EEEEEE',
     fontSize: '15px',
-    bottom: 0
+    bottom: 0,
   },
   items: {
     padding: '20px'
