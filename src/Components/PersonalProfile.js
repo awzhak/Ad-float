@@ -11,10 +11,12 @@ import moment from 'moment'
 
 
 //プロフィールの紹介文コンポーネント
-function Sentence(){
+function Sentence(props){
   const [item,setItem] = useState('')
   const [date,setDate] = useState()
-  const formId='ElVYSiPJrgq9RkE1tPiM';
+  console.log(props)
+  const formId= props.id
+
 
   useEffect(() => {
     // ad接続
@@ -145,10 +147,11 @@ function LatestPosts() {
 }
 
 //プロフィールメインのコンポーネント
-export default function PersonProfile(){
+export default function PersonProfile(props){
+  const formId = props.match.params.id
   return(
     <div>
-      <Sentence/>
+      <Sentence id={formId}/>
       <br/>
       <LatestPosts/>
     </div>
