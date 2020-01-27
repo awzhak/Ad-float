@@ -11,7 +11,7 @@ import Home from './Pages/Home';
 import UserPage from './Pages/UserPage';
 import EditProfileDetails from './Pages/EditProfileDetails';
 import NewProductionPost from './Components/NewProductionPost';
-import ArtDetails from './Components/ArtDetails'
+import ArtDetails2 from './Components/ArtDetails2'
 import PersonalProfile from './Components/PersonalProfile'
 import PersonalProfileEdit from './Components/PersonalProfileEdit'
 import CompanyPost from './Components/CompanyPost'
@@ -47,7 +47,7 @@ function App() {
             <Route path='/user/:id/edit' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />
             <Route path='/projectpost' exact component={CompanyPost} />
-            <Route path='/adposts/:id' component={ArtDetails} />
+            <Route path='/adposts/:id' component={ArtDetails2} />
             <Route path='/NewProductionPost/:id' component={NewProductionPost} />
             <Route path='/projects/:id' component={PersonalProfile} />
             <Route path='/projects/:id/edit' component={PersonalProfileEdit} />
