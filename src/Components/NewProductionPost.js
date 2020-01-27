@@ -9,7 +9,7 @@ import ScrollToTopOnMount from './ScrollToTopOnMount';
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 
 //firebase
 import firebase from 'firebase/app'
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function LayoutTextFields() {
   // formIdの受け取り
-  const formId = 'Ic9HRa5Dy6zpDH0btH0s';
+  const { formId } = useParams();
   // 現在ログイン中のユーザーID
   const uid = useSelector(state => state.uid.uid);
   const classes = useStyles();
@@ -123,7 +123,7 @@ export default function LayoutTextFields() {
                 onClick={() => history.goBack()}>
                 ←Back
             </Button>
-         <Card />  {/*　募集IDをpropsで流す */}
+         {/* <Card formId={formId}/> */}
         <div className={classes.text}>
             <TextField
                 ref={EndRef}

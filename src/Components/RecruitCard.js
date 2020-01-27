@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 7,
     paddingTop: 5,
   },
-  maney: {
+  money: {
     padding:0,
   },
   expand: {
@@ -60,6 +60,9 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   avatar: {
+    backgroundColor: lightBlue[50],
+  },
+  post: {
     backgroundColor: lightBlue[500],
   },
 }));
@@ -106,7 +109,7 @@ export default function RecruitCard(props) {
         <Card className={classes.card}>
           <CardHeader
             avatar={
-               <Avatar aria-label="recipe" className={classes.avatar}>
+               <Avatar aria-label="recipe" className={classes.post}>
                 {props.postcount}
               </Avatar>
             }
@@ -121,13 +124,13 @@ export default function RecruitCard(props) {
             title=""
           />
           </Link>
-          <CardContent className={classes.text} >
+          {/* <CardContent className={classes.text} >
             <Typography variant="body2" component="p">
               {props.description}
             </Typography>
-          </CardContent>
+          </CardContent> */}
           <CardHeader
-            className={classes.text2}
+            // className={classes.text2}
             avatar={
               <Avatar
               aria-label="recipe"
@@ -136,9 +139,9 @@ export default function RecruitCard(props) {
               />
             }
             title={props.company}
-            subheader={user.name}
+            subheader={user.address}
           />
-          <CardActions className={classes.maney}>
+          <CardActions className={classes.money}>
             <Button 
             className={classes.expand}
             size="small"

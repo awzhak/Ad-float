@@ -42,8 +42,7 @@ function App() {
             <Route path='/user/:id' component={UserPage} />
             <Route path='/user/:id/edit' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />
-            <Route path='/NewProductionPost/:formid' component={NewProductioinPost} />
-            {/* <Route path='/広告のパス' component={募集投稿画面} />  */}
+            <Route path='/NewProductionPost/:formId' component={NewProductioinPost} />
           </Switch>
           <Footer />
       </BrowserRouter>

@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 7,
     paddingTop: 5,
   },
-  maney: {
+  money: {
     padding:0,
   },
   expand: {
@@ -49,6 +49,9 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   avatar: {
+    backgroundColor: lightBlue[50],
+  },
+  post: {
     backgroundColor: lightBlue[500],
   },
 }));
@@ -56,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RecipeReviewCard(props) {
   // formId 受け取り
-  const formId = 'Ic9HRa5Dy6zpDH0btH0s';  // props.formId
+  const formId = props.formId;  // props.formId
   const classes = useStyles();
   // 募集情報
   const [Item, setItem] = useState({})
@@ -88,15 +91,10 @@ export default function RecipeReviewCard(props) {
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar aria-label="recipe" className={classes.post}>
             {Item.postcount}
           </Avatar>
         }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
         title={Item.title}
         subheader={`期限日:${date}～${limit}`}
       />
@@ -105,13 +103,13 @@ export default function RecipeReviewCard(props) {
         image={Item.image}
         title=""
       />
-      <CardContent className={classes.text}>
+      {/* <CardContent className={classes.text}>
         <Typography variant="body2" component="p">
           {Item.description}
         </Typography>
-      </CardContent>
+      </CardContent> */}
       <CardHeader
-      className={classes.text2}
+      // className={classes.text2}
         avatar={
           <Avatar
           aria-label="recipe"
@@ -122,13 +120,13 @@ export default function RecipeReviewCard(props) {
         title={Item.company}
         subheader={user.name}
       />
-      <CardActions className={classes.maney}>
-            <Button 
+      <CardActions className={classes.money}>
+            <Button
             className={classes.expand}
             size="small"
             variant="contained"
             color="primary">
-              {`¥${props.money}`}
+              {`¥${Item.money}`}
             </Button>
           </CardActions>
     </Card>
