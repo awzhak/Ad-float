@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
   },
   cardimg: {
     width: '100%',
-    maxHeight: '300px',
+    maxHeight: '200px',
+    minHeight: '200px',
     objectFit: 'cover'
   },
   orange: {
