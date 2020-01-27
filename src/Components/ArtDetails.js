@@ -12,6 +12,7 @@ import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import {db} from '../firebase/index';
+import firebase from 'firebase/app'
 import moment from 'moment'
 
 const useStyles = makeStyles(theme => ({
@@ -78,6 +79,10 @@ export default function ArtDetails(){
       userId: userId
     })
     setFlag(false)
+    const adRef = db.collection('ad').doc(adId)
+    adRef.update({
+      likecount: firebase.firestore.FieldValue.increment(1.0)
+    })
   }
 
   const handleClickDel = (event) => {
@@ -89,6 +94,10 @@ export default function ArtDetails(){
           const likeDefRef = db.collection('liked').doc(doc.id).delete()
           setFlag(true)
         })
+    })
+    const adRef = db.collection('ad').doc(adId)
+    adRef.update({
+      likecount: firebase.firestore.FieldValue.increment(-1.0)
     })
   }
 
