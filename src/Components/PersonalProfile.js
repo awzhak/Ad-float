@@ -84,11 +84,11 @@ function Sentence(props){
               </Col>
             </Row>
           </Col>
-          <Col md={2}>
-            <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
-            <Col md={2} style={{fontSize:20}}>
-              {item.description}
-            </Col>
+          <Col md={12}>
+            <center><p className="sen" style={{fontSize:20,fontWeight:900,whiteSpace: 'pre-line'}}>案件詳細</p></center>
+          </Col>
+          <Col style={{fontSize:20}}>
+            {item.description}
           </Col>
         </Row>
     </dev>
@@ -141,8 +141,8 @@ function LatestPosts(props) {
         <div style={{textAlign:'right'}}>
           <Fab
           onClick={() => history.push('/NewProductionPost/' + props.id)}
-          style={{marginBottom:30}} 
-          color="primary" aria-label="add">
+          style={{marginBottom:30, color:"blue"}} 
+          aria-label="add">
             <AddIcon />
           </Fab>
         </div>
