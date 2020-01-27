@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { setFooter } from "./../stores/rendering";
 import { db } from './../firebase/index'
 import moment from 'moment'
-
-
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
@@ -85,28 +81,20 @@ function AdCard(props) {
   const [projectUrl, setProjectUrl] = useState();
   
   useEffect(() => {
-    db.collection('users').get().then(snapshot => {
-      snapshot.forEach(doc => {
-        if( props[1].userId === doc.id ){
-          setUserName(doc.get('name'));
-          setUserId(doc.get('userId'));
-          setUserIcon(doc.get('icon'));
-          console.log(doc.get('name'));
-        }
+    try {
+      db.collection('users').doc(props[1].userId).get().then(doc => {
+        setUserName(doc.get('name'));
+        setUserId(doc.get('userId'));
+        setUserIcon(doc.get('icon'));
       })
-    })
-
-    db.collection('form').get().then(snapshot => {
-      snapshot.forEach(doc =>{
-        if( props[1].formId === doc.id ){
-          setProjectName( doc.get('title') );
-          setProjectUrl(props[1].formId)
-        }
+      db.collection('form').doc(props[1].formId).get().then(snapshot => {
+        setProjectName( snapshot.get('title'));
+        setProjectUrl(props[1].formId);
       })
-    })
-    
-    
-  }, [props])
+    } catch (e){
+      console.log(e);
+    }
+  },[])
   
   const AdUrl = "/adposts/" + props[0];
   const UserPageUrl = "/user/" + userId;

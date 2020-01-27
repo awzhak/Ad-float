@@ -68,7 +68,6 @@ export default function RecruitsAdCard (props){
   const [projectUrl, setProjectUrl] = useState();
   
   useEffect(() => {
-    console.log(props.id)
     try {
       db.collection('users').doc(props.userId).get().then(doc => {
         setUserName(doc.get('name'));
