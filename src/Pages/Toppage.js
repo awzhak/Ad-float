@@ -84,11 +84,7 @@ export default function SimpleCard({onClick}) {
                  variant="contained"
                  color="primary"
                  size="small"
-<<<<<<< HEAD
-                 onClick={() => history.push('/CompanyPost')}//募集投稿画面のパス
-=======
                  onClick={() => history.push('/adposts')}//募集投稿画面のパス
->>>>>>> 91d1cad22725a2fc148f89ab20e564ea3199936c
                  >Let's recruit
                 </Button>
             </CardActions>
