@@ -1,4 +1,9 @@
+.App {
+  /*background-color: #000003;*/
+  position: relative;
+}
 body {
+  padding:0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -10,6 +15,68 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+  filter: invert(100%);
+}
+
+.MuiFab-root {
+  background-color: #EEEEEE !important;
+  box-shadow: none !important;
+}
+
+.MuiFab-root:focus {
+	outline:0;
+}
+
+.MuiAppBar-positionStatic {
+  position: relative !important;
+}
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+/* dropzone css*/
+
+.MuiGrid-item {
+  padding: 0px !important;
+  padding-top: 32px !important;
+  margin: auto !important;
+  max-width: 100% !important;
+}
+
+/* .MuiGrid-grid-xs-4 {
+  flex-basis: 100% !important;
+} */
+
+
+
+
+/* メールの通知 css*/
+
+.popover-body {
+  padding: 0px !important;
+}
+
+.font-black {
+  color: black;
+}
+
+.card-link {
+  margin-left: 0rem !important;
+}
+
+.right {
+  text-align: right;
+  float: right;
 }
 
 /*footerのcss*/
