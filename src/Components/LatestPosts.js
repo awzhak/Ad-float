@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
   },
   cardgrid: {
     width: 'auto',
-    textAlign: "center",
     display: 'inline-block',
   },
   grid: {
@@ -105,7 +104,14 @@ function LatestPosts(props) {
   return (
     <div className={classes.cardgrid}>
       <div class="grid" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
-        {latestposts}
+        <Grid
+          className={classes.grid}
+          container spacing={3}
+          justify="center"
+          alignItems="center"
+        >
+          {latestposts}
+        </Grid> 
       </div>
     </div>
   );

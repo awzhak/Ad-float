@@ -85,7 +85,6 @@ function Home() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <HomeCarousel page={"home"} />
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
             最新の投稿
