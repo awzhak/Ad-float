@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function LayoutTextFields(props) {
   // formIdの受け取り
-  const { formId } = useParams();
+  const formId = props.match.params.id
   // 現在ログイン中のユーザーID
   const uid = useSelector(state => state.uid.uid);
   const classes = useStyles();

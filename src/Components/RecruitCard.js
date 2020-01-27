@@ -117,7 +117,7 @@ export default function RecruitCard(props) {
             subheader={`期限日:${date}～${limit}`}
           />
           {/* 募集詳細画面のパス */}
-          <Link href={`/NewProductionPost/${props.id}`}　onClick={() => history.push(`/NewProductionPost/${props.id}`)}>
+          <Link href={`/projects/${props.id}`}　onClick={() => history.push(`/projects/${props.id}`)}>
           <CardMedia
             className={classes.media}
             image={props.image}

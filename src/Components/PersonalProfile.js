@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Image from 'react-bootstrap/Image';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import {useHistory, useParams} from 'react-router-dom';
+
 
 import {db} from '../firebase/index';
 import moment from 'moment'
@@ -14,7 +16,7 @@ import moment from 'moment'
 function Sentence(props){
   const [item,setItem] = useState('')
   const [date,setDate] = useState()
-  console.log(props)
+
   const formId= props.id
 
 
@@ -106,9 +108,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function LatestPosts() {
+function LatestPosts(props) {
   const colors = ['Red','Orange','Yellow','Green','Blue','Violet'];
   const classes = useStyles();
+  const history = useHistory();
+
 
   const latestpost = colors.map((color,index) =>
     <div class="grid-item">
@@ -136,6 +140,7 @@ function LatestPosts() {
         </div>
         <div style={{textAlign:'right'}}>
           <Fab
+          onClick={() => history.push('/NewProductionPost/' + props.id)}
           style={{marginBottom:30}} 
           color="primary" aria-label="add">
             <AddIcon />
@@ -153,7 +158,7 @@ export default function PersonProfile(props){
     <div>
       <Sentence id={formId}/>
       <br/>
-      <LatestPosts/>
+      <LatestPosts id={formId}/>
     </div>
   );
 }
