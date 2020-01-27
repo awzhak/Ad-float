@@ -106,9 +106,9 @@ function AdCard(props) {
     
   }, [props])
   
-  const AdUrl = "/Ad/" + props[0];
+  const AdUrl = "/posts/" + props[0];
   const UserPageUrl = "/user/" + userId;
-  const ProjectUrl = "/project/" + projectUrl;
+  const ProjectUrl = "/projects/" + projectUrl;
 
   return(
     <div className={classes.root}>
