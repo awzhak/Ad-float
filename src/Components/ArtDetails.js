@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ArtDetails(){
+export default function ArtDetails(props){
   // アイコンフラグ
   const [flag, setFlag] = useState()
   const [item,setItem] = useState({})
