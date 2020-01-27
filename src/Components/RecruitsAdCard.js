@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     maxHeight: '200px',
     minHeight: '200px',
-    objectFit: 'cover'
+    objectFit: 'cover',
+    borderBottom: '1px rgba(0,0,0,.125) solid'
   },
   orange: {
     color: theme.palette.getContrastText(deepOrange[500]),
