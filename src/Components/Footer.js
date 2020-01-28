@@ -31,10 +31,16 @@ const useStyles = makeStyles(theme => ({
     paddingRight: '20px',
     position: 'absolute',
     right: 0,
+    top: 70,
     bottom: 0,
   },
   margin: {
     margin: theme.spacing(1),
+    backgroundColor: "#EEEEEE",
+    "&:hover": {
+      backgroundColor: "#EEEEEE"
+   },
+    boxShadow: "none",
   },
   copyright: {
     textAlign: 'center',

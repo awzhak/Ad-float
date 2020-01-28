@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Form from 'react-bootstrap/Form';
 import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone';
+import { useDispatch, useSelector } from "react-redux";
+
 
 import firebase from 'firebase/app';
 import {db} from '../firebase/index';
@@ -43,7 +45,7 @@ NumberFormatCustom.propTypes = {
 };
 
 //詳細コンポーネント
-function SentenceEdit(){
+function SentenceEdit(props){
   const [file, setFile] = useState(null)
   const [company, setCompany] = useState('')
   const [time, setTime] = useState('')
@@ -51,6 +53,7 @@ function SentenceEdit(){
   const [desc, setDesc] = useState('')
   const [title,setTitle] = useState('')
   const storageRef = storage.ref()
+
 
   const handleCompany = (event) => {
     setCompany(event.target.value)
@@ -88,7 +91,7 @@ function SentenceEdit(){
             limit: selectedDate,          //期限
             money: values.numberformat,         //金額
             postcount: 0,        //ポストカウント
-            userId: 'userId',   // ユーザーID
+            userId: props.id,   // ユーザーID
             description: desc,  // 説明
             image: downloadURL, //イメージＵＲＬ
             title: title,        //タイトル
@@ -234,9 +237,10 @@ function SentenceEdit(){
 
 //defaultコンポーネント
 export default function PersonalProfileEdit(){
+  const uid = useSelector(state => state.uid.uid);
     return(
         <dev>
-            <SentenceEdit/>
+            <SentenceEdit id={uid}/>
         </dev>
     );
 }

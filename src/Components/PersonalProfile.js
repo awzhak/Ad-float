@@ -164,8 +164,13 @@ export default function PersonProfile(props){
 
       <div style={{textAlign:'right'}}>
           <Fab
-            onClick={() => history.push('/NewProductionPost/' + props.id)}
-            style={{marginBottom:30, color:"blue"}} 
+            onClick={() => history.push('/NewProductionPost/' + formId )}
+            style={{
+                    position: "fixed",
+                    bottom:80,
+                    right:50,
+                    zIndex:1000}}
+            color="primary" 
             aria-label="add"
           >
             <AddIcon />

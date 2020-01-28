@@ -23,10 +23,6 @@ code {
   filter: invert(100%);
 }
 
-.MuiFab-root {
-  background-color: #EEEEEE !important;
-  box-shadow: none !important;
-}
 
 .MuiFab-root:focus {
 	outline:0;
@@ -52,12 +48,6 @@ ol, ul {
   margin: auto !important;
   max-width: 100% !important;
 }
-
-/* .MuiGrid-grid-xs-4 {
-  flex-basis: 100% !important;
-} */
-
-
 
 
 /* メールの通知 css*/
