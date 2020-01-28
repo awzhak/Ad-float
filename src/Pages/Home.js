@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import HomeCarousel from './../Components/HomeCarousel';
 import LatestPosts from './../Components/LatestPosts';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -58,8 +57,6 @@ function Home() {
     console.log(value)
   };
 
-  const colors = [ 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink', 'Red', 'Blue', 'Black', 'Pink' ]
-  
   return (
     <>
       <Paper className={classes.root}>
@@ -71,10 +68,9 @@ function Home() {
           centered
         >
           <Tab label="Top"  {...a11yProps(0)}/>
-          <Tab label="Home"  {...a11yProps(1)}/>
-          <Tab label="投稿" {...a11yProps(2)}/>
-          <Tab label="募集" {...a11yProps(3)}/>
-          <Tab label="Ranking" {...a11yProps(4)}/>
+          <Tab label="投稿" {...a11yProps(1)}/>
+          <Tab label="募集" {...a11yProps(2)}/>
+          <Tab label="Ranking" {...a11yProps(3)}/>
         </Tabs>
       </Paper>
 
@@ -86,15 +82,6 @@ function Home() {
 
       <TabPanel value={value} index={1}>
         <center>
-          <Typography variant="h3" gutterBottom color='primary'>
-            最新の投稿
-          </Typography>
-          <LatestPosts page={"home"} />
-        </center>
-      </TabPanel>
-
-      <TabPanel value={value} index={2}>
-        <center>
         <SearchBar />
           <Typography variant="h3" gutterBottom color='primary'>
             最新の投稿
@@ -103,7 +90,7 @@ function Home() {
         </center>
       </TabPanel>
 
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={2}>
         <center>
         <SearchBar />
           <Typography className={classes.padding} variant="h3" gutterBottom color='primary'>
@@ -113,7 +100,7 @@ function Home() {
         </center>
       </TabPanel>
 
-      <TabPanel value={value} index={4}>
+      <TabPanel value={value} index={3}>
         <center>
           <Typography variant="h3" gutterBottom color='primary'>
             人気投稿
