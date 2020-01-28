@@ -105,14 +105,20 @@ export default function RecruitsAdCard (props){
       }
     }
     fetch();
-  },[])
+  },[props])
+
+  useEffect(() => {
+    const likeRef = db.collection('ad').doc(id)
+      likeRef.onSnapshot(snapshot => {
+        setLike(snapshot.get('likecount'))
+      })
+  }, [like])
 
   const liked = () => {
     const adRef = db.collection('ad').doc(id)
     adRef.update({
       likecount: firebase.firestore.FieldValue.increment(1.0)
     })
-    setLike(like+1)
   }
   
   const UserPageUrl = "/user/" + userId;
