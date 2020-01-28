@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Form from 'react-bootstrap/Form';
 import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone';
 import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import firebase from 'firebase/app';
@@ -53,6 +54,8 @@ function SentenceEdit(props){
   const [desc, setDesc] = useState('')
   const [title,setTitle] = useState('')
   const storageRef = storage.ref()
+  const [load, setLoad] = useState(-1)
+
 
 
   const handleCompany = (event) => {
@@ -75,6 +78,7 @@ function SentenceEdit(props){
   }
 
   const handleClick = (event) => {
+    setLoad(0)
     const uploadTask = storageRef.child(`${file[0].name}`).put(file[0])
     uploadTask.on(
       'state_changed',
@@ -85,8 +89,8 @@ function SentenceEdit(props){
         console.log('err', error)
       },
       () => {
-        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-          const adRef = db.collection('form').add({
+        uploadTask.snapshot.ref.getDownloadURL().then(async function(downloadURL) {
+          const  adRef = await db.collection('form').add({
             company: company,       // 企業名
             limit: selectedDate,          //期限
             money: values.numberformat,         //金額
@@ -97,6 +101,7 @@ function SentenceEdit(props){
             title: title,        //タイトル
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           })
+          setLoad(1)
         })
       }
     )
@@ -221,13 +226,19 @@ function SentenceEdit(props){
           value={desc}
           />
         <Col md={{ span: 1, offset: 11 }}>
-          <Button 
+          {load === -1 ? 
+          <Button
           variant="outlined" 
           color="primary"
           onClick={(e) => handleClick(e)}
           style={{marginTop:20 }}>
-            投稿
-          </Button>
+            投稿</Button> :
+          load === 0 ? <CircularProgress /> :
+          <Button
+          variant="outlined" 
+          color="primary"
+          style={{marginTop:20 }}>
+            完了</Button>}
         </Col>
       </Row>
     </dev>
