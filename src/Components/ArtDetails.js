@@ -43,9 +43,10 @@ export default function ArtDetails(props){
   const [user,setUser] = useState({})
   const [date,setDate] = useState({})
   const [id,setId] = useState()
+  //const [like,setLike] = useState()
   const adId = props.match.params.id;
   const userId = item.userId;
-  const likeId = '4U9dY8k9orn18F9IO2AR';
+  //const likeId = like.liked;
 
 
   useEffect(() => {
@@ -62,6 +63,7 @@ export default function ArtDetails(props){
     //liked接続
     const likeRef = db.collection('liked').where('adId', '==', adId).where('userId', '==', userId);
     likeRef.get().then(snapshot => {
+      //setLike(docsnapshot.data())
       if(snapshot.empty) {
         // ドキュメントに一致なし
         setFlag(true)

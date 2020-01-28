@@ -214,8 +214,8 @@ function SentenceEdit(){
             </Col>
           </Row>
         </Col>
-        <Col md={2}>
-          <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
+        <Col md={12}>
+            <center><p className="sen" style={{fontSize:20,fontWeight:900,whiteSpace: 'pre-line'}}>案件詳細</p></center>
         </Col>
           <Form.Control
           as="textarea" 

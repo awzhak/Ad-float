@@ -6,11 +6,29 @@ import Image from 'react-bootstrap/Image';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import {useHistory, useParams} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+
+import RecruitsAdCard from './RecruitsAdCard'
+
 
 
 import {db} from '../firebase/index';
 import moment from 'moment'
 
+const useStyles = makeStyles(theme => ({
+  root: {
+  },
+  cardgrid: {
+    width: 'auto',
+    display: 'inline-block',
+  },
+  grid: {
+    width: 'auto',
+  },
+  cardgrid: {
+    margin: 30,
+  }
+}));
 
 //プロフィールの紹介文コンポーネント
 function Sentence(props){
@@ -39,7 +57,7 @@ function Sentence(props){
   };
 
   return(
-    <dev>
+    <div>
         <Row 
         style={{marginTop:50,
                 marginLeft:70,
@@ -84,81 +102,75 @@ function Sentence(props){
               </Col>
             </Row>
           </Col>
-          <Col md={2}>
-            <p className="sen" style={{fontSize:20,fontWeight:900}}>案件詳細</p>
-            <Col md={2} style={{fontSize:20}}>
-              {item.description}
-            </Col>
+          <Col md={12}>
+            <center><p className="sen" style={{fontSize:20,fontWeight:900,whiteSpace: 'pre-line'}}>案件詳細</p></center>
+          </Col>
+          <Col style={{fontSize:20}}>
+            {item.description}
           </Col>
         </Row>
-    </dev>
-  );
-}
-
-
-//商品一覧コンポーネント
-const useStyles = makeStyles(theme => ({
-  card: {
-    width: "14rem",
-    marginBottom: 15
-  },
-  cardgrid: {
-    textAlign: "center",
-    margin: 30
-  }
-}));
-
-function LatestPosts(props) {
-  const colors = ['Red','Orange','Yellow','Green','Blue','Violet'];
-  const classes = useStyles();
-  const history = useHistory();
-
-
-  const latestpost = colors.map((color,index) =>
-    <div class="grid-item">
-      <Card className={classes.card}>
-        <Card.Img variant="top" src="aaa.svg" />
-        <Card.Body>
-          <Card.Title>{color}</Card.Title>
-          <Card.Text>
-            the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
-    </div>
-  );
-
-  return (
-    <div>
-      <center style={{fontSize:30,marginTop:60,fontWeight:900}}>
-        投稿一覧
-      </center>
-      <div className={classes.cardgrid}>
-        <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
-          {latestpost}
-        </div>
-        <div style={{textAlign:'right'}}>
-          <Fab
-          onClick={() => history.push('/NewProductionPost/' + props.id)}
-          style={{marginBottom:30}} 
-          color="primary" aria-label="add">
-            <AddIcon />
-          </Fab>
-        </div>
-      </div>
     </div>
   );
 }
 
 //プロフィールメインのコンポーネント
 export default function PersonProfile(props){
+  const classes = useStyles();
+  const history = useHistory();
   const formId = props.match.params.id
+  const [posts, setPosts] = useState([]);
+  const postIds = [];
+
+  useEffect (() => {
+    try {
+      db.collection('ad').where('formId', '==', formId)
+      .get().then(snapshot => {
+        const pos = [];
+        snapshot.forEach(doc => {
+          pos.push(doc.data())
+        })
+        setPosts(pos)
+      })
+    } catch (e){
+      console.log(e)
+    }
+  }, [])
+
+  const Ads = posts.map((post) =>
+    <RecruitsAdCard {...post}/>
+  )
+
   return(
     <div>
       <Sentence id={formId}/>
       <br/>
-      <LatestPosts id={formId}/>
+
+      <center style={{fontSize:30,marginTop:60,fontWeight:900}}>
+        投稿一覧
+      </center>
+
+      <div className={classes.cardgrid}>
+        <div class="grid" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 30 }'>
+          <Grid
+            className={classes.grid}
+            container spacing={3}
+            justify="center"
+            alignItems="center"
+          >
+            {Ads}
+          </Grid>
+        </div>
+      </div>
+
+      <div style={{textAlign:'right'}}>
+          <Fab
+            onClick={() => history.push('/NewProductionPost/' + props.id)}
+            style={{marginBottom:30, color:"blue"}} 
+            aria-label="add"
+          >
+            <AddIcon />
+          </Fab>
+      </div>
     </div>
   );
 }

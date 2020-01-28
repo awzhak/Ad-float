@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import firebase from 'firebase/app'
 import { db } from './../firebase/index'
 import moment from 'moment'
-import { Avatar } from '@material-ui/core';
+
+import { Avatar, Fab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import { Card } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
+  rootnoroot: {
+    textAlign: 'center', 
+    marginTop: 30,
+    marginBottom: 30,
+  },
   root : {
-    width: '17rem',
-    display: 'inline-block',
-    padding: '5px'
+    width: '60rem',
+    display: 'inline-block'
   },
   cardbody: {
     margin: 15,
   },
   cardimg: {
     width: '100%',
-    maxHeight: '200px',
-    minHeight: '200px',
-    objectFit: 'cover',
     borderBottom: '1px rgba(0,0,0,.125) solid'
   },
   orange: {
@@ -55,58 +59,70 @@ const useStyles = makeStyles(theme => ({
 
 //文字数制限
 
-function AdCard(props) {
+export default function RecruitsAdCard (props){
+  const id = props.match.params.id;
   const classes = useStyles();
-  /*
-    props[1]にあるもの
-    ユーザーアイコン
-    ユーザーネーム
-    ユーザーid
-    作品のサムネイル
-    タイトル
-    説明
-    元の案件
-    投稿日時
-    userIdからとってくる
-  */
+
+  //ad
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+  const [url, setUrl] = useState();
+  const [date, setDate] = useState();
+  const [like, setLike] = useState(0);
 
   //User
+  const [uid, setUid] = useState();
   const [userName, setUserName] = useState();
   const [userId, setUserId] = useState();
   const [userIcon, setUserIcon] = useState();
-
-  //投稿作品
-
   //元の案件
   const [projectName, setProjectName] = useState();
   const [projectUrl, setProjectUrl] = useState();
-  
   useEffect(() => {
-    try {
-      db.collection('users').doc(props[1].userId).get().then(doc => {
-        setUserName(doc.get('name'));
-        setUserId(doc.get('userId'));
-        setUserIcon(doc.get('icon'));
-      })
-      db.collection('form').doc(props[1].formId).get().then(snapshot => {
-        setProjectName( snapshot.get('title'));
-        setProjectUrl(props[1].formId);
-      })
-    } catch (e){
-      console.log(e);
+    async function fetch(){
+      try {
+        const AdRef = await db.collection('ad').doc(id)
+        AdRef.get().then(snapshot => {
+          setUid(snapshot.get('userId'))
+          setTitle(snapshot.get('title'))
+          setDescription(snapshot.get('setDescription'))
+          setUrl(snapshot.get('url'))
+          setDate(moment(snapshot.get('timestamp').toDate()).format('YYYY/MM/DD'))
+          setLike(snapshot.get('likecount'))
+          setProjectUrl(snapshot.get('formId'))
+          db.collection('form').doc(snapshot.get('formId')).get().then(ss => {
+            setProjectName(ss.get('title'))
+          })
+          db.collection('users').doc(snapshot.get('userId'))
+          .get().then(snapshot => {
+            setUserName(snapshot.get('name'));
+            setUserId(snapshot.get('userId'));
+            setUserIcon(snapshot.get('icon'));
+          })
+        })
+      } catch (e){
+        console.log(e);
+      }
     }
+    fetch();
   },[])
+
+  const liked = () => {
+    const adRef = db.collection('ad').doc(id)
+    adRef.update({
+      likecount: firebase.firestore.FieldValue.increment(1.0)
+    })
+    setLike(like+1)
+  }
   
-  const AdUrl = "/adposts/" + props[0];
   const UserPageUrl = "/user/" + userId;
   const ProjectUrl = "/projects/" + projectUrl;
 
   return(
+    <div className={classes.rootnoroot}>
     <div className={classes.root}>
     <Card class="grid-item">
-      <a href={AdUrl}>
-        <img className={classes.cardimg} src={props[1].url}/>
-      </a>
+      <img className={classes.cardimg} src={url}/>
       <div className={classes.cardbody}>
         <div>
           <a href={UserPageUrl}>
@@ -118,17 +134,16 @@ function AdCard(props) {
           </a>
           </div>
         </div>
-        <a href={AdUrl} style={{ color: 'black', textDecoration: 'none' }}>
-          <h5 className={classes.cardtitle}>
-            {props[1].title}
-          </h5 >
-        </a>
+        <h5 className={classes.cardtitle}>
+          {title}
+        </h5 >
         <Card.Text>
-          {props[1].description}
+          {description}
         </Card.Text>
         <div className={classes.likefooter}>
-          <FavoriteIcon color="secondary" />
-          <span className={classes.likecount}>{props[1].likecount}</span>
+          いいね！&nbsp;
+          <Fab size="small"><FavoriteIcon color="secondary" onClick={liked}/></Fab>
+          <span className={classes.likecount} >{like}</span>
         </div>
       </div>
       <Card.Footer style={{textAlign:'left'}}>
@@ -136,14 +151,11 @@ function AdCard(props) {
           <small className="text-muted">{projectName}</small>
         </a>
         <div className={classes.date}>
-          <a href={AdUrl} style={{ textDecoration: 'none' }}>
-            <small className="text-muted">{moment(props[1].timestamp.toDate()).format('YYYY/MM/DD')}</small>
-          </a>
+          <small className="text-muted">投稿日時&nbsp;:&nbsp;{date}</small>
         </div>
       </Card.Footer>
     </Card>
     </div>
+    </div>
   );
 }
-
-export default AdCard;
