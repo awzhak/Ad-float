@@ -39,6 +39,7 @@ function ProfileDetails(props) {
   const classes = useStyles();
 
   const [ propid, setPropid ] = useState(props.id);
+  const [ mail, setMail ] = useState();
   const [ company, setCompany ] = useState();
   const [ name, setName ] = useState();
   const [ id, setId ] = useState();
@@ -58,6 +59,7 @@ function ProfileDetails(props) {
           setCompany(user.company)
           setName(user.name)
           setId(user.userId)
+          setMail(user.address)
           setIcon(user.icon)
           setJob(user.job)
           setSkills(user.skills)
@@ -96,6 +98,11 @@ function ProfileDetails(props) {
           </TableRow>
 
           <TableRow>
+            <TableCell className={classes.thcell} align="center">mail</TableCell>
+            <TableCell className={classes.cell} align="right">{mail}</TableCell>
+          </TableRow>
+
+          <TableRow>
             <TableCell className={classes.thcell} align="center">職業</TableCell>
             <TableCell className={classes.cell} align="right">{job}</TableCell>
           </TableRow>
@@ -108,7 +115,7 @@ function ProfileDetails(props) {
           </TableRow>
 
           <TableRow>
-            <TableCell className={classes.thcell} align="center">いいね</TableCell>
+            <TableCell className={classes.thcell} align="center">もらったいいね数</TableCell>
             <TableCell className={classes.cell} align="right">{like}</TableCell>
           </TableRow>
 
