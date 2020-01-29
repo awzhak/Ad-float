@@ -110,7 +110,7 @@ export default function SimpleCard({onClick}) {
                 <Button
                 variant="contained"
                 color="primary"
-                onClick={(event) => onClick(event,3)} // 募集タブに移動
+                onClick={(event) => onClick(event,2)} // 募集タブに移動
                 size="small">Let's design</Button>
             </CardActions>
         </Card>
@@ -133,7 +133,7 @@ export default function SimpleCard({onClick}) {
             <CardActions>
                 <Button variant="contained"
                 color="primary"
-                onClick={(event) => onClick(event,2)}
+                onClick={(event) => onClick(event,1)}
                 size="small">Let's Like</Button>
             </CardActions>
         </Card>
