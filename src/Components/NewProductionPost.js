@@ -94,19 +94,23 @@ export default function LayoutTextFields(props) {
           // 作品投稿
           const adRef = db.collection('ad').add({
             title: title,       // タイトル
+            id: null,
             url: downloadURL,   // 作品URL
             description: desc,  // 説明
             formId: formId,     // 募集ID
             userId: uid,   // ユーザーID
             likecount: 0,   // ライクカウント
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          })
+          }).then(function(docRef) {
+            db.collection('ad').doc(docRef.id).update({
+              id: docRef.id
+            })
+        })
           // 投稿数カウント
           const formRef = db.collection('form').doc(formId)
           formRef.update({
             postcount: firebase.firestore.FieldValue.increment(1.0)
           })
-          console.log(adRef)  // ドキュメントID
         })
       }
     )
