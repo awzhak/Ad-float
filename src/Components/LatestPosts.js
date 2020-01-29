@@ -91,9 +91,12 @@ function LatestPosts(props) {
 
   const latestposts = posts.map((post) =>
     <div className={classes.root} class="grid-item">
-      {props.page == 'home' ? <AdCard {...post}/>:
-      props.page == 'projects' ? <RecruitCard {...post} /> :
-      props.page == 'posts' ? <AdCard {...post}/> : ''}
+      {
+        props.page === 'home' ? <AdCard {...post}/>:
+        props.page === 'projects' ? <RecruitCard {...post} /> :
+        props.page === 'ranking' ? <AdCard {...post}/> :
+        props.page === 'posts' ? <AdCard {...post}/> : ''
+      }
     </div>
   );
 
