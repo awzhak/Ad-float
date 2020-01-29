@@ -30,9 +30,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function LatestPosts(props) {
-
+  const classes = useStyles();
   const [posts, setPosts] = useState([]);
-
 
   useEffect(() => {
     switch(props.page) {
@@ -89,9 +88,6 @@ function LatestPosts(props) {
         break;
     }
   },[props.page])
-
-
-  const classes = useStyles();
 
   const latestposts = posts.map((post) =>
     <div className={classes.root} class="grid-item">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from './../firebase/index'
 import moment from 'moment'
-import { Avatar } from '@material-ui/core';
+import { Avatar, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -50,6 +50,12 @@ const useStyles = makeStyles(theme => ({
   },
   likecount: {
     marginLeft: '5px'
+  },
+  load: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
   }
 }));
 
@@ -70,6 +76,8 @@ function AdCard(props) {
     userIdからとってくる
   */
 
+ const [load, setLoad] = useState(true);
+
   //User
   const [userName, setUserName] = useState();
   const [userId, setUserId] = useState();
@@ -82,19 +90,25 @@ function AdCard(props) {
   const [projectUrl, setProjectUrl] = useState();
   
   useEffect(() => {
-    try {
-      db.collection('users').doc(props[1].userId).get().then(doc => {
-        setUserName(doc.get('name'));
-        setUserId(doc.get('userId'));
-        setUserIcon(doc.get('icon'));
-      })
-      db.collection('form').doc(props[1].formId).get().then(snapshot => {
-        setProjectName( snapshot.get('title'));
-        setProjectUrl(props[1].formId);
-      })
-    } catch (e){
-      console.log(e);
+    async function fetch(){
+      try {
+        const userRef = await db.collection('users').doc(props[1].userId)
+        userRef.get().then(doc => {
+          setUserName(doc.get('name'));
+          setUserId(doc.get('userId'));
+          setUserIcon(doc.get('icon'));
+        })
+        const formRef = await db.collection('form').doc(props[1].formId)
+        formRef.get().then(snapshot => {
+          setProjectName( snapshot.get('title'));
+          setProjectUrl(props[1].formId);
+        })
+        setLoad(false)
+      } catch (e){
+        console.log(e);
+      }
     }
+    fetch();
   },[])
   
   const AdUrl = "/adposts/" + props[0];
@@ -102,47 +116,55 @@ function AdCard(props) {
   const ProjectUrl = "/projects/" + projectUrl;
 
   return(
-    <div className={classes.root}>
-    <Card class="grid-item">
-      <a href={AdUrl}>
-        <img className={classes.cardimg} src={props[1].url}/>
-      </a>
-      <div className={classes.cardbody}>
-        <div>
-          <a href={UserPageUrl}>
-            <Avatar className={classes.orange} src={userIcon}>N</Avatar>
+    <>
+    { load ? 
+    <div className={classes.load}>
+      <CircularProgress />
+    </div>
+    :
+      <div className={classes.root}>
+      <Card class="grid-item">
+        <a href={AdUrl}>
+          <img className={classes.cardimg} src={props[1].url}/>
+        </a>
+        <div className={classes.cardbody}>
+          <div>
+            <a href={UserPageUrl}>
+              <Avatar className={classes.orange} src={userIcon}>N</Avatar>
+            </a>
+            <div className={classes.carduser}>
+            <a href={UserPageUrl} style={{ color: 'black', textDecoration: 'none' }}>
+              <h6 className={classes.username}>{userName}<small className="text-muted">@{userId}</small></h6>
+            </a>
+            </div>
+          </div>
+          <a href={AdUrl} style={{ color: 'black', textDecoration: 'none' }}>
+            <h5 className={classes.cardtitle}>
+              {props[1].title}
+            </h5 >
           </a>
-          <div className={classes.carduser}>
-          <a href={UserPageUrl} style={{ color: 'black', textDecoration: 'none' }}>
-            <h6 className={classes.username}>{userName}<small className="text-muted">@{userId}</small></h6>
-          </a>
+          <Card.Text>
+            {props[1].description}
+          </Card.Text>
+          <div className={classes.likefooter}>
+            <FavoriteIcon color="secondary" />
+            <span className={classes.likecount}>{props[1].likecount}</span>
           </div>
         </div>
-        <a href={AdUrl} style={{ color: 'black', textDecoration: 'none' }}>
-          <h5 className={classes.cardtitle}>
-            {props[1].title}
-          </h5 >
-        </a>
-        <Card.Text>
-          {props[1].description}
-        </Card.Text>
-        <div className={classes.likefooter}>
-          <FavoriteIcon color="secondary" />
-          <span className={classes.likecount}>{props[1].likecount}</span>
-        </div>
-      </div>
-      <Card.Footer style={{textAlign:'left'}}>
-        <a href={ProjectUrl} style={{ textDecoration: 'none' }}>
-          <small className="text-muted">{projectName}</small>
-        </a>
-        <div className={classes.date}>
-          <a href={AdUrl} style={{ textDecoration: 'none' }}>
-            <small className="text-muted">{moment(props[1].timestamp.toDate()).format('YYYY/MM/DD')}</small>
+        <Card.Footer style={{textAlign:'left'}}>
+          <a href={ProjectUrl} style={{ textDecoration: 'none' }}>
+            <small className="text-muted">{projectName}</small>
           </a>
-        </div>
-      </Card.Footer>
-    </Card>
-    </div>
+          <div className={classes.date}>
+            <a href={AdUrl} style={{ textDecoration: 'none' }}>
+              <small className="text-muted">{moment(props[1].timestamp.toDate()).format('YYYY/MM/DD')}</small>
+            </a>
+          </div>
+        </Card.Footer>
+      </Card>
+      </div>
+    }
+    </>
   );
 }
 
