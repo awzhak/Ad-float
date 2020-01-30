@@ -127,7 +127,7 @@ export default function SimpleCard({onClick}) {
                     <ThumbUpAltIcon className={classes.icon}/>
                 </Avatar>
                 <Typography className={classes.body} variant="body2" component="p">
-                Home画面ではユーザーが投稿した広告が表示されます！様々なジャンルの広告が集まるのであなたの興味の幅を広げることもあるでしょう。そんなときはそのデザインにLIKEしましょう
+                投稿タブではユーザーが投稿した広告が表示されます！様々なジャンルの広告が集まるのであなたの興味の幅を広げることもあるでしょう。そんなときはそのデザインにLIKEしましょう
                 </Typography>
             </CardContent>
             <CardActions>

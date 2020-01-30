@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import {DropzoneArea, DropzoneDialog} from 'material-ui-dropzone';
 import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {useHistory, useParams} from 'react-router-dom';
 
 
 import firebase from 'firebase/app';
@@ -55,6 +56,7 @@ function SentenceEdit(props){
   const [title,setTitle] = useState('')
   const storageRef = storage.ref()
   const [load, setLoad] = useState(-1)
+  const history = useHistory();
 
 
 
@@ -232,12 +234,14 @@ function SentenceEdit(props){
           color="primary"
           onClick={(e) => handleClick(e)}
           style={{marginTop:20 }}>
-            投稿</Button> :
+            投稿
+          </Button> :
           load === 0 ? <CircularProgress /> :
           <Button
-          variant="outlined" 
-          color="primary"
-          style={{marginTop:20 }}>
+          variant="contained"
+          color="secondary"
+          style={{marginTop:20 }}
+          onClick={() => history.push(`/`)}>
             完了</Button>}
         </Col>
       </Row>
