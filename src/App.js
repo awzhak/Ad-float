@@ -15,6 +15,7 @@ import ArtDetails2 from './Components/ArtDetails2'
 import PersonalProfile from './Components/PersonalProfile'
 import PersonalProfileEdit from './Components/PersonalProfileEdit'
 import CompanyPost from './Components/CompanyPost'
+import Kiyaku from './Components/kiyaku'
 
 import { Button } from 'react-bootstrap'
 
@@ -43,6 +44,7 @@ function App() {
         <Original_Navbar />
           <Switch>
             <Route path='/' exact component={Home}/>
+            <Route path='/kiyaku' exact component={Kiyaku}/>
             <Route path='/user/:id' component={UserPage} />
             <Route path='/user/:id/edit' exact component={EditProfileDetails} />
             <Route path='/adcard' exact component={AdCard} />

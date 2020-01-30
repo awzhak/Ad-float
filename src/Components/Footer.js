@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import {useHistory, useParams} from 'react-router-dom';
 
 
 import { Row, Col } from 'react-bootstrap';
@@ -54,6 +55,7 @@ const useStyles = makeStyles(theme => ({
 export default function Footer(){
   const classes = useStyles();
   const rendfooter = useSelector(state => state.footer.footer);
+  const history = useHistory();
 
   let Ftt = (
     <div className={classes.root}>
@@ -61,7 +63,7 @@ export default function Footer(){
         <Row>
           <Col>
             <div className={classes.aaaa}>
-              <p>利用規約</p>
+              <p onClick={() => history.push('/kiyaku')}>利用規約</p>
               <p>Mail： AdFloat@adfloat.onion</p>
             </div>
           </Col>
@@ -88,7 +90,7 @@ export default function Footer(){
           <Row>
             <Col>
               <div className={classes.aaaa}>
-                <p>利用規約</p>
+                <p onClick={() => history.push('/kiyaku')}>利用規約</p>
                 <p>Mail： AdFloat@adfloat.onion</p>
               </div>
             </Col>
